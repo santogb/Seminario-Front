@@ -1,0 +1,57 @@
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: #E2E3E4;
+  background-size: cover;
+  text-align: center;
+}
+
+.loginInput{
+  margin: 15px 0;
+}
+
+.loginButton{
+  margin-top: 30px;
+}
+
+.loginButton .MuiButton-containedSecondary {
+  background-color: #238fcf,
+}
+
+.loginButton .MuiButton-containedSecondary:hover {
+  background-color: #055A8B,
+}
+
+.loginButton .MuiButton-containedSecondary:disabled {
+  background-color: rgb(233, 245, 237),
+}
+
+@media(max-width:767px){
+  .logo {
+    height: 120px;
+  }
+}
+
+@media(min-width:768px){
+  .logo {
+    height: 160px;
+  }
+}
+
+@media(min-width:992px){
+  .logo {
+    height: 200px;
+  }
+}
+
+@media(min-width:1200px){
+  .logo {
+    height: 300px;
+  }
+}
+
+
