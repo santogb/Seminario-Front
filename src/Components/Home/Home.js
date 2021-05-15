@@ -10,6 +10,7 @@ import { LoadingData } from '../Common';
 
 import { listarServiciosPorSemana } from '../../Services/serviciosServices';
 import BackgroundVideo from "../Common/BackgroundVideo.js";
+import EstimatedProduction from "../EstimatedProduction/EstimatedProduction";
 ;
 
 export default function Home() {
@@ -121,28 +122,8 @@ export default function Home() {
 
   return (
     <div>
-      <Layout title="Inicio">            
-
-            <BackgroundVideo/>
-
-            {!isLoadingServiciosPorSemana && serviciosPorSemana !== null && (
-              <WeekCalendar 
-                dayFormat={'dddd'} 
-                firstDay={moment().day(diasSemana[day])}
-                scaleUnit={120} 
-                startTime={moment({h: 8, m: 0})} 
-                endTime={moment({h: 23, m: 59})} 
-                selectedIntervals={serviciosPorSemana}
-                useModal={false}
-                cellHeight={50}
-                />
-            )}
-            {isLoadingServiciosPorSemana && (
-              <LoadingData
-                message="Cargando cronograma..."
-                message2="Aguarde por favor."
-              />
-            )} 
+      <Layout title="Inicio">     
+        <EstimatedProduction/>
       </Layout>
     </div>
   );

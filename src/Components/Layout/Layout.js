@@ -27,6 +27,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import MenuListItem from './MenuListItem';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSolarPanel,faMoneyBillWave } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../../Assets/Images/CityGym_logo_horizontal.png";
 import theme from './Theme.js';
@@ -179,13 +181,10 @@ const Layout = ({ children, title, refresh }) => {
           <Divider />
           <List>
             <MenuListItem text="Inicio" to="/" icon={<HomeIcon style={{ color: "#404040" }} />} />
-            {esRolAdministrativo() && <MenuListItem text="Ingresos" to="/ingresos" icon={<MeetingRoomIcon style={{ color: "#404040" }}/>} />}
-            {esRolAdministrativo() && <MenuListItem text="Facturación" to="/facturacion" icon={<PaymentIcon style={{ color: "#404040" }}/>} />}
-            {esRolAdministrativo() && <MenuListItem text="Liquidación" to="/liquidacion" icon={<AccountBalanceIcon style={{ color: "#404040" }} />} />}
-            {esRolProfesor() && <MenuListItem text="Socios" to="/socios" icon={<AssignmentIndIcon style={{ color: "#404040" }} />} />}
-            {esRolGerente() && <MenuListItem text="Empleados" to="/empleados" icon={<PeopleIcon style={{ color: "#404040" }}/>} />}
-            {esRolAdministrativo() && <MenuListItem text="Servicios" to="/servicios" icon={<AssignmentIcon style={{ color: "#404040" }} />} />}
-            {esRolAdministrativo() && <MenuListItem text="Abonos" to="/abonos" icon={<LocalAtmIcon style={{ color: "#404040" }}/>} /> }
+            
+            {esRolAdministrativo() && <MenuListItem text="Produccion Estimada de energia renovable" to="/RenewableEnergy" icon={<FontAwesomeIcon icon={faSolarPanel}style={{ color: "#404040" }}/>} />}
+            {esRolAdministrativo() && <MenuListItem text="Consumo" to="/ConsumoManual" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />}
+            {esRolAdministrativo() && <MenuListItem text="Facturacion" to="/Facturacion" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />}
           </List>
           <Divider />
           <div style={{ position: "absolute", bottom: 0 }}>

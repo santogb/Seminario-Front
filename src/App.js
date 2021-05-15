@@ -3,16 +3,11 @@ import { ProtectedRoute, GerenteRoute, AdministrativoRoute, ProfesorRoute } from
 import { 
   Login, 
   Home,
-  Socios, 
-  Servicios, 
-  Empleados, 
-  Ingresos,
-  Abonos,
-  Facturacion,
-  Liquidacion,
-  MisDatos,
-  DatosEmpresa
-} from './Components';
+  RenewableEnergy,
+  ConsumoManual,
+  Facturacion
+} from './components';
+
 
 import './App.css';
 
@@ -23,16 +18,9 @@ function App() {
         <Switch>
           <Route exact path="/auth/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />
-          <ProfesorRoute exact path="/socios" component={Socios} />
-          <AdministrativoRoute exact path="/servicios" component={Servicios} />
-          <GerenteRoute exact path="/empleados" component={Empleados} />
-          <AdministrativoRoute exact path="/ingresos" component={Ingresos} />
-          <AdministrativoRoute exact path="/abonos" component={Abonos} />
-          <AdministrativoRoute exact path="/facturacion" component={Facturacion} />
-          <AdministrativoRoute exact path="/liquidacion" component={Liquidacion} />
-          <AdministrativoRoute exact path="/misDatos" component={MisDatos} />
-          <GerenteRoute exact path="/datosEmpresa" component={DatosEmpresa} />
-
+          <AdministrativoRoute exact path="/Facturacion" component={Facturacion} />
+          <AdministrativoRoute exact path="/RenewableEnergy" component={RenewableEnergy} />
+          <AdministrativoRoute exact path="/ConsumoManual" component={ConsumoManual} />
           <Route path="*" component={() => "404 not Found"} />
         </Switch>
       </BrowserRouter>

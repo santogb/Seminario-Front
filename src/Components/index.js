@@ -6,6 +6,8 @@ import Empleados from './Empleados/Empleados';
 import Ingresos from './Ingresos/Ingresos';
 import Abonos from './Abonos/Abonos';
 import Facturacion from './Facturacion/Facturacion';
+import RenewableEnergy from './RenewableEnergy/RenewableEnergy';
+import ConsumoManual from './ConsumoManual/ConsumoManual';
 import Liquidacion from './Liquidacion/Liquidacion';
 import MisDatos from './MisDatos/MisDatos';
 import DatosEmpresa from './DatosEmpresa/DatosEmpresa';
@@ -21,5 +23,7 @@ export {
     Facturacion,
     Liquidacion,
     MisDatos,
-    DatosEmpresa
+    DatosEmpresa,
+    RenewableEnergy,
+    ConsumoManual
 }
