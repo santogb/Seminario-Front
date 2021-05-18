@@ -6,7 +6,7 @@ import {
   RenewableEnergy,
   ConsumoManual,
   Facturacion
-} from './components';
+} from './Components';
 
 
 import './App.css';

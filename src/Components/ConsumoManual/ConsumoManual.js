@@ -76,16 +76,18 @@ export default function ConsumosManuales() {
   const [tabIndex, setTabIndex] = React.useState(0);
   const [isLoadingConsumo, setIsLoadingConsumo] = React.useState(false); 
   const [consumo, setConsumo] = React.useState(null);
+  const [idUser, setidUser] = React.useState(null);
 
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
-  
+  setidUser(getIdUser());
+  console.log(getIdUser())
   const recargarConsumo = () => {
 
     setIsLoadingConsumo(true);
     
-      listarConsumos(getIdUser)
+      listarConsumos(getIdUser())
         .then((response) => {      
           //sleep(5);
           setConsumo(response.status == 200 ? response.data : []);
