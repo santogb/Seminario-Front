@@ -9,19 +9,17 @@ import TableRow from '@material-ui/core/TableRow';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import Paper from '@material-ui/core/Paper';
-import PrintIcon from '@material-ui/icons/Print';
 import { Container } from "@material-ui/core";
 import { styled } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ModalConsumo from './ModalConsumo';
-
+import Moment from 'moment'
 
 
 import { formatDateToString, formatDateWithTimeToStringPretty } from '../Common/DateHelpers';
 import { validateRequired } from "../Common/Validations";
 import { MessageModal, PaginationActions, CustomButton } from '../Common';
-import { crearConsumo, eliminarConsumo } from "../../Services/consumoServices";
-
+import { crearConsumo,eliminarConsumo } from '../../Services/consumoServices';
 
 const ButtonNuevoContainer = styled(Container)({
   textAlign: 'right',
@@ -47,7 +45,7 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-export default class TabConsumo extends React.Component {
+export default class TabFacturacion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,73 +56,21 @@ export default class TabConsumo extends React.Component {
       modalABM: "",
       modalIMP: "",
       messageModal: null,
-      form: this.initializeForm(),
-      validations: this.initializeValidations(),
-      validationMessages: this.initializeValidationMessages(),
+      form: this.initializeForm()    
     };
   }
 
   initializeForm = () => {
     return {
-      idTipoPago: "",
-      idTipoAbono: "",
-      idSocio: "",
-      monto: "",
-      dni: "",
-      nroTarjeta: "",
-      titular: "",
-      cuotas: "",
-      ccv: "",
-      fechaVencTarjeta: ""
-    };
-  };
-
-  initializeFormPDF = () => {
-    return {
-      cliente: "",
-      tipoPago: "",
-      cuotas: "",
-      numeroRecibo: "",
-      fecha: "",
-      apellido: "",
-      nombre: "",
-      dni: "",
-      tipoAbono: "",
-      monto: "",
-    };
-  };
-
-  initializeValidations = () => {
-    return {
-      idTipoPago: true,
-      idTipoAbono: true,
-      idSocio: true,
-      monto: true,
-      dni: true,
-      nroTarjeta: "",
-      titular: "",
-      cuotas: "",
-      ccv: "",
-      fechaVencTarjeta: ""
-    };
-  };
-
-  initializeValidationMessages = () => {
-    return {
-      idTipoPago: "",
-      idTipoAbono: "",
-      idSocio: "",
-      monto: "",
-      dni: "",
-      nroTarjeta: "",
-      titular: "",
-      cuotas: "",
-      ccv: "",
-      fechaVencTarjeta: ""
+      IdUsuario: this.props.IdUsuario,
+      Periodo: "",
+      kwh: "",
+      ConsumoTotal: ""      
     };
   };
 
   handleChange = (prop, value) => {
+    console.log(prop+' '+value)
     this.setState((prevState) => ({
       ...prevState,
       form: {
@@ -134,61 +80,6 @@ export default class TabConsumo extends React.Component {
       validations: {
         ...prevState.validations,
         [prop]: true,
-      },
-    }));
-  };
-
-  handleChangeTipoPago = (prop, value) => {
-    this.setState((prevState) => ({
-      ...prevState,
-      form: {
-        ...prevState.form,
-        idTipoPago: value,
-        nroTarjeta: "",
-        titular: "",
-        cuotas: "",
-        ccv: "",
-        fechaVencTarjeta: ""
-      },
-      validations: {
-        ...prevState.validations,
-        idTipoPago: true,
-        nroTarjeta: true,
-        titular: true,
-        cuotas: true,
-        ccv: true,
-        fechaVencTarjeta: true
-      },
-    }));
-  };
-
-  handleChangeDni = (prop, value) => {
-    this.setState((prevState) => ({
-      ...prevState,
-      form: {
-        ...prevState.form,
-        [prop]: value,
-        idTipoAbono: "",
-        idSocio: "",
-        nombre: "",
-        monto: "",
-        nroTarjeta: "",
-        titular: "",
-        cuotas: "",
-        ccv: "",
-        fechaVencTarjeta: ""
-      },
-      validations: {
-        ...prevState.validations,
-        [prop]: true,
-        idTipoAbono: true,
-        idSocio: true,
-        monto: true,
-        nroTarjeta: true,
-        titular: true,
-        cuotas: true,
-        ccv: true,
-        fechaVencTarjeta: true
       },
     }));
   };
@@ -200,31 +91,42 @@ export default class TabConsumo extends React.Component {
     }));
   };
 
-  handleABM = (method, Consumo) => {
+  handleABM = (method, consumo) => {
     this.setState((prevState) => ({
       ...prevState,
       isModalOpen: true,
       modalABM: method,
       form: {
         ...prevState.form,
-        id: Consumo?.id ?? 0,
+        id: consumo?.id ?? 0,
       },
     }));
   };
 
   handleAlta = () => this.handleABM("A");
-  handleBaja = (Consumo) => this.handleABM("B", Consumo);
-  handleImprimirRecibo = (Consumo) => this.handleIMP("I", Consumo);
+  handleBaja = (consumo) => this.handleABM("B", consumo);
 
+  handleIMP = (method, facturacion) => {
 
-  handleIMP = (method, Consumo) => {
-
-    console.log(formatDateWithTimeToStringPretty(Consumo?.createdAt));
+    console.log(formatDateWithTimeToStringPretty(facturacion?.createdAt));
 
     this.setState((prevState) => ({
       ...prevState,
       isModalOpenPDF: true,
-      modalIMP: method      
+      modalIMP: method,
+      formPDF: {
+        ...prevState.formPDF,
+        tipoPago: facturacion?.tipoPago?.tipoPago,
+        cuotas: facturacion?.cuotas ?? "-",
+        numeroRecibo: facturacion?.id?.toString()?.padStart(10, "0"),
+        fecha: formatDateWithTimeToStringPretty(facturacion?.createdAt),
+        fechaHoy: formatDateWithTimeToStringPretty(formatDateToString(new Date())),
+        apellido: facturacion?.socio?.apellido,
+        nombre: facturacion?.socio?.nombre,
+        dni: facturacion?.socio?.dni,
+        tipoAbono: facturacion?.tipoAbono?.tipoAbono,
+        monto: facturacion?.monto,
+      },
     }));
   };
 
@@ -323,94 +225,32 @@ export default class TabConsumo extends React.Component {
     return isDniValid;
   };
 
-  onBuscarSocioResponseOk = (response) => {
-    if (response) {
-      this.setState((prevState) => ({
-        ...prevState,
-        isBuscandoSocio: false,
-        form: {
-          ...prevState.form,
-          nombre: response?.apellido
-            ? response?.apellido + ", " + (response?.nombre ?? "")
-            : "",
-          idTipoAbono: response?.abono?.idTipoAbono ?? "",
-          idSocio: response?.id ?? "",
-          monto: response?.abono?.tipoAbono?.precio ?? ""
-        },
-        validations: this.initializeValidations(),
-        validationMessages: this.initializeValidationMessages(),
-      }));
-    } else {
-      this.setState((prevState) => ({
-        ...prevState,
-        isBuscandoSocio: false,
-        form: this.initializeForm(),
-        messageModal: {
-          ...prevState.messageModal,
-          isOpen: true,
-          isSuccess: false,
-          isError: true,
-          title: "Búsqueda de Socio",
-          message:
-            "No se encontró ningún socio con el DNI '" +
-            this.state.form.dni +
-            "'",
-        },
-      }));
-    }
-  };
-
-  onBuscarSocioResponseError = (error) => {
-    this.setState((prevState) => ({
-      ...prevState,
-      isBuscandoSocio: false,
-      form: this.initializeForm(),
-      messageModal: {
-        ...prevState.messageModal,
-        isOpen: true,
-        isSuccess: false,
-        isError: true,
-        title: "Búsqueda de Socio",
-        message: "Oops! Ocurrió un error al buscar el socio.",
-      },
-    }));
-  };
-
   handleGuardar = async () => {
-    const isValidForm = await this.validateForm();
+    //const isValidForm = await this.validateForm();
 
-    if (isValidForm && !this.state.isSaving) {
+    //if (isValidForm && !this.state.isSaving) {
       this.setState((prevState) => ({
         ...prevState,
         isSaving: true,
       }));
 
       var request = {
-        id: this.state.form.id,
-        idTipoPago: this.state.form.idTipoPago,
-        idTipoAbono: this.state.form.idTipoAbono,
-        idSocio: this.state.form.idSocio,
-        monto: this.state.form.monto, 
-        cuotas: this.state.form.cuotas
+        idUsuario: this.state.form.IdUsuario,
+        periodo: this.state.form.Periodo,
+        kwh: this.state.form.kwh,
+        consumoTotal: this.state.form.ConsumoTotal
       };
-
-      if (this.state.form.idTipoPago === 2) {
-
-        var requestTarjeta = {
-          nroTarjeta: this.state.form.nroTarjeta,
-          ccv: this.state.form.ccv,
-          monto: this.state.form.monto,
-        }        
-      } else {
-        crearConsumo(request)
-          .then((response) => {
-            this.onGuardarResponseOk(response);
-          })
-          .catch((error) => {
-            this.onGuardarResponseError(error);
-          });
-      }
-    }
+      console.log(JSON.stringify(request))
+      crearConsumo(request)
+        .then((response) => {
+          this.onGuardarResponseOk(response);
+          console.log(JSON.stringify(response))
+        })
+        .catch((error) => {
+          this.onGuardarResponseError(error);
+        });
+      
+    //}
   };
 
   onGuardarResponseOk = (response) => {
@@ -424,13 +264,14 @@ export default class TabConsumo extends React.Component {
         isSuccess: true,
         isError: false,
         title: "Alta de facturación exitosa!",
-        message: "La Consumo fue dado de alta correctamente.",
+        message: "La facturacion fue dado de alta correctamente.",
       },
       form: this.initializeForm(),
       validations: this.initializeValidations(),
       validationMessages: this.initializeValidationMessages(),
     }));
   };
+
   onGuardarResponseError = (error) => {
     this.setState((prevState) => ({
       ...prevState,
@@ -453,9 +294,10 @@ export default class TabConsumo extends React.Component {
       isSaving: true,
     }));
 
-    eliminarConsumo(this.state.form.id)
+    eliminarConsumo({id:this.state.form.id,idUsuario:this.state.form.IdUsuario})
       .then((response) => {
         this.onEliminarResponseOk(response);
+        console.log(response)
       })
       .catch((error) => {
         this.onEliminarResponseError(error);
@@ -472,8 +314,8 @@ export default class TabConsumo extends React.Component {
         isOpen: true,
         isSuccess: true,
         isError: false,
-        title: "¡Baja de la Consumo exitosa!",
-        message: "La Consumo fue eliminado correctamente.",
+        title: "¡Baja de la facturacion exitosa!",
+        message: "La facturacion fue eliminado correctamente.",
       },
     }));
   };
@@ -488,10 +330,21 @@ export default class TabConsumo extends React.Component {
         isOpen: true,
         isSuccess: false,
         isError: true,
-        title: "Baja de la Consumo errónea",
-        message: "Oops! Ocurrió un error al eliminar la Consumo.",
+        title: "Baja de la facturacion errónea",
+        message: "Oops! Ocurrió un error al eliminar la facturacion.",
       },
     }));
+  };
+  initializeValidations = () => {
+    return {      
+      
+    };
+  };
+
+  initializeValidationMessages = () => {
+    return {
+      
+    };
   };
 
   handleCerrar = () => {
@@ -503,6 +356,16 @@ export default class TabConsumo extends React.Component {
       validationMessages: this.initializeValidationMessages(),
     }));
   };
+
+  
+  handleCerrarPDF = () => {
+    this.setState((prevState) => ({
+      ...prevState,
+      isModalOpenPDF: false,
+      formPDF: this.initializeFormPDF()
+    }));
+  };
+
 
   cerrarMessageModal = () => {
     this.setState((prevState) => ({
@@ -526,57 +389,51 @@ export default class TabConsumo extends React.Component {
   render() {
     var rowsPerPage = 5;
     var emptyRows =
-      this.props.Consumo != null
+      this.props.Facturacion != null
         ? rowsPerPage -
           Math.min(
             rowsPerPage,
-            this.props.Consumo.length - this.state.page * rowsPerPage
+            this.props.Facturacion.length - this.state.page * rowsPerPage
           )
         : rowsPerPage;
 
-    var ConsumoPaginado = this.props.Consumo?.slice(
+    var facturacionPaginado = this.props.Facturacion?.slice(
       this.state.page * rowsPerPage,
       this.state.page * rowsPerPage + rowsPerPage
-    );
-
+    );    
     return (
       <div>
         <ButtonNuevoContainer maxWidth="lg">
-          <CustomButton handleClick={this.handleAlta} text="Nueva Facturación" />
+          <CustomButton handleClick={this.handleAlta} text="Nuevo Consumo" />
         </ButtonNuevoContainer>
 
         <TableContainer component={Paper} style={{ margin: "10px 0 0 0" }}>
           <Table style={{ minWidth: 700 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <StyledTableCell align="center">Nro.</StyledTableCell>
                 <StyledTableCell align="center">Periodo</StyledTableCell>
-                <StyledTableCell>Socio</StyledTableCell>
-                <StyledTableCell align="center">Kw/h</StyledTableCell>
-                <StyledTableCell align="center">Consumo Total (Kw)</StyledTableCell>
+                <StyledTableCell align="center">Kwh ($)</StyledTableCell>
+                <StyledTableCell align="center">Consumo total</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {ConsumoPaginado?.map((Consumo) => (
-                <StyledTableRow key={Consumo.id}>
-                  <StyledTableCell align="center">
-                    {Consumo?.id ?? "-"}
+              {facturacionPaginado?.map((facturacion) => (
+                <StyledTableRow key={facturacion.id}>
+                  <StyledTableCell align="center">                   
+                    {facturacion? Moment(facturacion.periodo, 'YYYY-MM-DD').format('MMM YYYY') : "-"}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {Consumo?.Periodo ?? "-"}
+                    {facturacion?.kwh ?? "-"}
                   </StyledTableCell>                  
                   <StyledTableCell align="center">
-                    {Consumo?.Kwh ?? "-"}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">
-                    {Consumo?.ConsumoTotal}
-                  </StyledTableCell>                  
+                    {facturacion?.consumoTotal ?? "-"}
+                  </StyledTableCell> 
                   <StyledTableCell align="center">                  
                     <DeleteIcon
-                      onClick={() => this.handleBaja(Consumo)}
+                      onClick={() => this.handleBaja(facturacion)}
                       style={{ margin: "0 5px", cursor: "pointer" }}
                     />
-                  </StyledTableCell>
+                  </StyledTableCell>                 
                 </StyledTableRow>
               ))}
 
@@ -590,7 +447,7 @@ export default class TabConsumo extends React.Component {
               <TableRow>
                 <TablePagination
                   colSpan={6}
-                  count={this.props.Consumo?.length ?? 0}
+                  count={this.props.Facturacion?.length ?? 0}
                   rowsPerPage={rowsPerPage}
                   page={this.state.page}
                   SelectProps={{
@@ -609,18 +466,18 @@ export default class TabConsumo extends React.Component {
         <ModalConsumo
           isOpen={this.state.isModalOpen}
           modalABM={this.state.modalABM}
-          isSaving={this.state.isSaving}
-          isBuscandoSocio={this.state.isBuscandoSocio}
+          isSaving={this.state.isSaving}          
           form={this.state.form}
-          Consumo={this.props.Consumo}
+          facturacion={this.props.facturacion}
           tiposPago={this.props.tiposPago}
           validations={this.state.validations}
           validationMessages={this.state.validationMessages}
           handleGuardar={this.handleGuardar}
           handleEliminar={this.handleEliminar}
-          handleCerrar={this.handleCerrar}
-          handleChange={this.handleChange}          
-        />          
+          handleCerrar={this.handleCerrar}  
+          handleChange={this.handleChange}       
+        />
+          
 
         <MessageModal
           isOpen={this.state.messageModal?.isOpen}

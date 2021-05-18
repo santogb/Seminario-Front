@@ -59,9 +59,9 @@ function RenewableEnergy() {
               <Tab label="Produccion Energia Renovable" icon={<FontAwesomeIcon icon={faSolarPanel} />} aria-label="person" {...tabProps(0)} />
             </StyledTabs>
           </AppBar>
-          <Iframe url="https://cdsrenovables.cammesa.com/renovableschart/#/totalesLineAndPie"
+          <Iframe url="https://cdsrenovables.cammesa.com/renovableschart/#/pronostico"
                     width="100%"
-                    height="2000px"
+                    height="980px"
                     id="RenewableEnergy"
                     className="RenewableEnergy"
                     display="initial"

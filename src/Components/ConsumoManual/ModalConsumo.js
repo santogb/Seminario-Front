@@ -11,6 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import { Textbox, Dropdown, CustomButton } from "../Common";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
+import "./DatePickerStyle.scss";
+import Moment from 'moment'
+
 
 const useStyles = makeStyles((theme) => ({
   closeButton: {
@@ -23,8 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ModalConsumo(props) {
   const classes = useStyles();
-  const [fecha, setFecha] = React.useState(0);
-  setFecha(props.form.date);
+
   return (
     <div>
       {props.isOpen && (
@@ -37,9 +39,9 @@ export default function ModalConsumo(props) {
         >
           <MuiDialogTitle disableTypography id="alert-dialog-title">
             <Typography variant="h6">
-              {props.modalABM === "A" && <span>Alta de Consumo</span>}
-              {props.modalABM === "B" && <span>Baja de Consumo</span>}
-              {props.modalABM === "M" && <span>Edición de Consumo</span>}
+              {props.modalABM === "A" && <span>Alta de Facturacion</span>}
+              {props.modalABM === "B" && <span>Baja de Facturacion</span>}
+              {props.modalABM === "M" && <span>Edición de Facturacion</span>}
             </Typography>
             <IconButton
               aria-label="close"
@@ -52,28 +54,34 @@ export default function ModalConsumo(props) {
           <DialogContent dividers>
             <form className={classes.root} autoComplete="off">
               {(props.modalABM === "A" || props.modalABM === "M") && (
-                <Grid container spacing={3}>                  
-
+                <Grid container spacing={3}>
                   <Grid item xl={12} lg={12} md={12} xs={12}>
+                    <label ></label>
                     <DatePicker
-                      propName="Period"
-                      placeholder="Period"                      
+                      propName="Periodo"
+                      placeholder="Periodo"
                       dateFormat="MMMM yyyy"
                       showMonthYearPicker
-                      selected={fecha}    
-                      //onChange={setFecha(this)}                  
+                      value={Moment(props.form.Periodo, 'YYYY-MM-DD').format('MMM YYYY')}
+                      onChange={date => props.form.Periodo = date}
                     />
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} xs={12}>
                     <Textbox
-                      propName="monto"
-                      placeholder="Monto"
-                      value={props.form.monto}
-                      isValid={props.validations.idAbono}
-                      validationMessage={props.validationMessages.idAbono}
-                      isDisabled
+                      propName="kwh"
+                      placeholder="Kwh ($)"
+                      value={props.form.monto} 
+                      handleChange={props.handleChange}                     
                     />
-                  </Grid>                                   
+                  </Grid>
+                  <Grid item xl={6} lg={6} md={12} xs={12}>
+                    <Textbox
+                      propName="ConsumoTotal"
+                      placeholder="Consumo Total"
+                      value={props.form.titular}
+                      handleChange={props.handleChange}                      
+                    />
+                  </Grid> 
                 </Grid>
               )}
               {props.modalABM === "B" && (

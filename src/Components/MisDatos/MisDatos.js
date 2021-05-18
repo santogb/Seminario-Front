@@ -11,7 +11,7 @@ import TabMisDatos from "./TabMisDatos.js";
 
 import { LoadingData } from '../Common';
 
-import { getIdEmpleado } from '../../Services/sessionServices';
+import { getIdUser } from '../../Services/sessionServices';
 import { obtenerEmpleado } from '../../Services/empleadosServices';
 
 TabPanel.propTypes = {
@@ -84,7 +84,7 @@ export default function MisDatos() {
 
     setIsLoadingMisDatos(true);
 
-    obtenerEmpleado(getIdEmpleado())
+    obtenerEmpleado(getIdUser())
       .then((response) => {
         setMisDatos(response?.empleado);
         setIsLoadingMisDatos(false);

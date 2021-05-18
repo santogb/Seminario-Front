@@ -30,7 +30,7 @@ import MenuListItem from './MenuListItem';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSolarPanel,faMoneyBillWave } from "@fortawesome/free-solid-svg-icons";
 
-import logo from "../../Assets/Images/CityGym_logo_horizontal.png";
+import logo from "../../Assets/Images/infinite transparente.svg";
 import theme from './Theme.js';
 import Copyright from './Copyright.js';
 
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-    "background-color": "#055A8B",
+    "background-color": "#465022",
     fontWeight: "bold"
   },
   toolbarIcon: {
@@ -182,9 +182,9 @@ const Layout = ({ children, title, refresh }) => {
           <List>
             <MenuListItem text="Inicio" to="/" icon={<HomeIcon style={{ color: "#404040" }} />} />
             
-            {esRolAdministrativo() && <MenuListItem text="Produccion Estimada de energia renovable" to="/RenewableEnergy" icon={<FontAwesomeIcon icon={faSolarPanel}style={{ color: "#404040" }}/>} />}
+            {esRolAdministrativo() && <MenuListItem text="Pronostico" to="/RenewableEnergy" icon={<FontAwesomeIcon icon={faSolarPanel}style={{ color: "#404040" }}/>} />}
             {esRolAdministrativo() && <MenuListItem text="Consumo" to="/ConsumoManual" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />}
-            {esRolAdministrativo() && <MenuListItem text="Facturacion" to="/Facturacion" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />}
+            {/* {esRolAdministrativo() && <MenuListItem text="Facturacion" to="/Facturacion" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />} */}
           </List>
           <Divider />
           <div style={{ position: "absolute", bottom: 0 }}>

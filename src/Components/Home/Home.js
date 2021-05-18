@@ -6,11 +6,9 @@ import 'react-week-calendar/dist/style.css';
 import moment from 'moment'
 import 'moment/locale/es';
 
-import { LoadingData } from '../Common';
-
 import { listarServiciosPorSemana } from '../../Services/serviciosServices';
-import BackgroundVideo from "../Common/BackgroundVideo.js";
-import EstimatedProduction from "../EstimatedProduction/EstimatedProduction";
+
+import Iframe from 'react-iframe'
 ;
 
 export default function Home() {
@@ -117,13 +115,16 @@ export default function Home() {
     recargarServiciosPorSemana();
   }
 
-  const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
-  const day = new Date().getDay();
-
   return (
     <div>
       <Layout title="Inicio">     
-        <EstimatedProduction/>
+        <Iframe url="https://cdsrenovables.cammesa.com/renovableschart/#/totalesLineAndPie"
+                      width="100%"
+                      height="2000px"
+                      id="RenewableEnergy"
+                      className="RenewableEnergy"
+                      display="initial"
+                      position="relative"/>
       </Layout>
     </div>
   );

@@ -13,6 +13,9 @@ import { LoadingData } from '../Common';
 
 import { listarConsumos } from '../../Services/consumoServices';
 
+import {getIdUser} from "../../Services/sessionServices";
+
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
@@ -63,7 +66,6 @@ function TabPanel(props) {
     </div>
   );
 }
-
 export default function ConsumosManuales() {
   
   useEffect(() => {
@@ -73,30 +75,32 @@ export default function ConsumosManuales() {
   const classes = useStyles();
   const [tabIndex, setTabIndex] = React.useState(0);
   const [isLoadingConsumo, setIsLoadingConsumo] = React.useState(false); 
-  const [Consumo, setConsumo] = React.useState(null);
+  const [consumo, setConsumo] = React.useState(null);
 
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
-
+  
   const recargarConsumo = () => {
 
     setIsLoadingConsumo(true);
-
-    listarConsumos()
-      .then((response) => {
-        setConsumo(response?.status === "OK" ? response.Consumoes : []);
-        setIsLoadingConsumo(false);
-      })
-      .catch(error => {
-        setIsLoadingConsumo(false);
-      });
+    
+      listarConsumos(getIdUser)
+        .then((response) => {      
+          //sleep(5);
+          setConsumo(response.status == 200 ? response.data : []);
+          setIsLoadingConsumo(false);          
+        })
+        .catch(error => {
+          setIsLoadingConsumo(false);
+        });
+    
   }
-/*
-  if (Consumo === null && !isLoadingConsumo) {
-    recargarConsumo();
-  }*/
 
+  if (consumo === null && !isLoadingConsumo) {
+    recargarConsumo();
+  }
+  
   return (
     <div>
       <Layout title="Consumo">
@@ -111,17 +115,18 @@ export default function ConsumosManuales() {
               <Tab className={classes.customTab} label="Gestión de Consumo y Cobros" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
             </StyledTabs>
           </AppBar>
+          
           <TabPanel value={tabIndex} index={0}>
-
+            
             {!isLoadingConsumo
-                && Consumo !== null
+                && consumo !== null
                 && (
-              <TabConsumo Consumo={Consumo} recargarConsumoEvent={recargarConsumo} />
+              <TabConsumo Facturacion={consumo} recargarConsumoEvent={recargarConsumo} IdUsuario={getIdUser}/>
             )}
             
-            { (isLoadingConsumo) && (
+            { (isLoadingConsumo && 
               <LoadingData
-                message="Cargando Consumoes..."
+                message="Cargando Consumos..."
                 message2="Aguarde por favor."
               />
             )} 

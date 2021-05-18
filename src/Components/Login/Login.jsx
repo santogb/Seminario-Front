@@ -5,16 +5,16 @@ import "./Login.scss";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Logo from "../../Assets/Images/CityGym_logo.png";
+import Logo from "../../Assets/Images/infinite transparente.svg";
 import { login } from "../../Services/empleadosServices";
 import {
   setToken,
   setActiveSession,
-  setIdEmpleado,
+  setIdUser,
   setIdTipoEmpleado,
   removeToken,
   removeActiveSession,
-  removeIdEmpleado,
+  removeIdUser,
   removeIdTipoEmpleado
 } from "../../Services/sessionServices";
 
@@ -110,13 +110,13 @@ export default class Login extends Component {
         removeToken();
         removeActiveSession();
         removeIdTipoEmpleado();
-        removeIdEmpleado();
+        removeIdUser();
 
 
         //LOGUEAR AUTOMATICAMENTE:
         setToken("1234");
         setActiveSession(true);
-        setIdEmpleado("1");
+        setIdUser("60a301314cede130149e6a13");
         setIdTipoEmpleado("3");
         //HASTA ACÁ
 

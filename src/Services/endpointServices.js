@@ -59,6 +59,7 @@ export const post = async (endpoint, request) => {
     }
 };
 
+
 export const postToken = async (endpoint, request, token) => {
 
   try {
@@ -90,7 +91,7 @@ export const get = async (endpoint) => {
 
       logResponse(endpoint, response);
 
-      return response?.data;
+      return response;
     } catch (error) {
       logErrorResponse(endpoint, error);
       return error?.response?.data;
@@ -98,5 +99,24 @@ export const get = async (endpoint) => {
 };
 
 export const getById = async (endpoint, id) => {
-  return await get(endpoint + "?id=" + id);
+  return await get(endpoint + "?idUsuario=" + id);
+};
+
+export const deleteById = async (endpoint, request) => {
+
+  try {
+
+    var authorizationConfig = { headers: { Authorization: "Bearer " + getToken() }};
+
+    logRequest(endpoint, request, authorizationConfig);
+    console.log(request);
+    var response = await axios.delete(endpoint, request, authorizationConfig);
+
+    logResponse(endpoint, response);
+    
+    return response;
+  } catch (error) {
+    logErrorResponse(endpoint, error);
+    return error?.response?.data;
+  }
 };

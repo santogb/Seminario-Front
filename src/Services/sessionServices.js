@@ -1,6 +1,6 @@
 // Non api internal functionalities
 export function isConnected() {
-    return getIdEmpleado() && getIdTipoEmpleado() && getActiveSession() && getToken();
+    return getIdUser() && getIdTipoEmpleado() && getActiveSession() && getToken();
 }
 
 export function esGerente() { return getIdTipoEmpleado() === "4"; }
@@ -15,7 +15,7 @@ export function esRolProfesor() { return  esGerente() || esAdministrativo() || e
 export function logOut(cb) {
     removeToken();
     removeActiveSession();
-    removeIdEmpleado();
+    removeIdUser();
     removeIdTipoEmpleado();
     setTimeout(cb, 100);
 }
@@ -26,9 +26,9 @@ export function setToken(value) { return sessionStorage.setItem('token', value);
 export function removeToken() { return sessionStorage.removeItem('token'); }
 
 //ActiveSession methods
-export function getIdEmpleado() { return localStorage.getItem('idEmpleado'); }
-export function setIdEmpleado(value) { return localStorage.setItem('idEmpleado', value); }
-export function removeIdEmpleado() { return localStorage.removeItem('idEmpleado'); }
+export function getIdUser() { return localStorage.getItem('idUser'); }
+export function setIdUser(value) { return localStorage.setItem('idUser', value); }
+export function removeIdUser() { return localStorage.removeItem('idUser'); }
 
 //ActiveSession methods
 export function getIdTipoEmpleado() { return localStorage.getItem('idTipoEmpleado'); }

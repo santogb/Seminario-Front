@@ -8,7 +8,7 @@ import { Textbox, MessageModal, CustomButton } from "../Common";
 
 import { validateRequired } from "../Common/Validations";
 import {
-  getIdEmpleado,
+  getIdUser,
   getIdTipoEmpleado,
 } from "../../Services/sessionServices";
 import { editarEmpleado } from "../../Services/empleadosServices";
@@ -52,7 +52,7 @@ export default function MisDatos(props) {
       setIsSaving(true);
 
       var request = {
-        id: getIdEmpleado(),
+        id: getIdUser(),
         idTipoEmpleado: getIdTipoEmpleado(),
         nombre: form.nombre,
         apellido: form.apellido,

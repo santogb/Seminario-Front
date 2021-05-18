@@ -1,6 +1,4 @@
-const urlApi = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8000"; 
-const urlTarjetaB = process.env.REACT_APP_BACKEND_APP_URL_TARJETAB || "https://cors-anywhere.herokuapp.com/http://52.146.29.128";
-
+const urlApi = process.env.REACT_APP_BACKEND_APP_URL || "https://seminario-1.herokuapp.com"; 
 
 const endpoints = {
    //empleados endpoints
@@ -13,11 +11,11 @@ const endpoints = {
     listarEmpleados:`${urlApi}/api/empleados/listar`,
 
     //consumo manuales
-    listarConsumosManuales:`${urlApi}/api/ConsumosManuales/listar`,
+    listarConsumosManuales:`${urlApi}/seminariobackend/obtenerConsumoPorUsuario`,
     obtenerConsumoManual:`${urlApi}/api/ConsumosManuales/obtener`,
-    eliminarConsumoManual:`${urlApi}/api/ConsumosManuales/eliminar`,
+    eliminarConsumoManual:`${urlApi}/seminariobackend/eliminarConsumo`,
     editarConsumoManual:`${urlApi}/api/ConsumosManuales/editar`,
-    crearConsumo:`${urlApi}/api/ConsumosManuales/crear`,
+    crearConsumo:`${urlApi}/seminariobackend/crearConsumo`,
 }
 
 export default endpoints;

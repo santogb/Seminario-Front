@@ -1,27 +1,25 @@
 import endpoints from "./endpoints";
-import { get, getById, post } from "./endpointServices";
+import { get, getById, post, deleteById } from "./endpointServices";
 
 export const crearConsumo = async (data) => {
   return await post(endpoints.crearConsumo, {
-    idTipoPago: data.idTipoPago,
-    idTipoAbono: data.idTipoAbono,
-    idSocio: data.idSocio,
-    monto: data.monto,
-    nroOperacionTarjeta: data.nroOperacionTarjeta,
-    cuotas: data.cuotas
+    idUsuario: data.idUsuario,
+    periodo: data.periodo,
+    kwh: data.kwh,
+    consumoTotal: data.consumoTotal
   });
 };
 
-export const listarConsumos = async () => {
-  return await get(endpoints.listarConsumosManuales);
+export const listarConsumos = async (data) => {
+  return await getById(endpoints.listarConsumosManuales,data);
 };
 
 export const obtenerConsumo = async (id) => {
   return await getById(endpoints.obtenerConsumoManual, id);
 };
 
-export const eliminarConsumo = async (id) => {
-  return await post(endpoints.eliminarConsumoManual, { id: id });
+export const eliminarConsumo = async (data) => {
+  return await deleteById(endpoints.eliminarConsumoManual, { data: { "idConsumo": data.id,"idUsuario": data.idUsuario } });
 };
 
 export const editarConsumo = async (data) => {

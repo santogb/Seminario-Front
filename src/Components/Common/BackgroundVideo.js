@@ -1,6 +1,6 @@
 import React from "react";
 import Video from "../../Assets/Videos/videoGimnasio.mp4";
-import Logo from "../../Assets/Images/CityGym_logo.png";
+import Logo from "../../Assets/Images/infinite transparente.svg";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
