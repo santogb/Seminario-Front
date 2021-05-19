@@ -39,9 +39,9 @@ export default function ModalConsumo(props) {
         >
           <MuiDialogTitle disableTypography id="alert-dialog-title">
             <Typography variant="h6">
-              {props.modalABM === "A" && <span>Alta de Facturacion</span>}
-              {props.modalABM === "B" && <span>Baja de Facturacion</span>}
-              {props.modalABM === "M" && <span>Edición de Facturacion</span>}
+              {props.modalABM === "A" && <span>Alta de Consumo</span>}
+              {props.modalABM === "B" && <span>Baja de Consumo</span>}
+              {props.modalABM === "M" && <span>Edición de Consumo</span>}
             </Typography>
             <IconButton
               aria-label="close"
@@ -85,7 +85,7 @@ export default function ModalConsumo(props) {
               )}
               {props.modalABM === "B" && (
                 <p>
-                  ¿Está seguro de que desea dar de baja la Facturacion?
+                  ¿Está seguro de que desea dar de baja el Consumo?
                 </p>
               )}
             </form>

@@ -263,8 +263,8 @@ export default class TabFacturacion extends React.Component {
         isOpen: true,
         isSuccess: true,
         isError: false,
-        title: "Alta de facturación exitosa!",
-        message: "La facturacion fue dado de alta correctamente.",
+        title: "Alta de consumo exitoso!",
+        message: "El consumo fue dado de alta correctamente.",
       },
       form: this.initializeForm(),
       validations: this.initializeValidations(),
@@ -314,8 +314,8 @@ export default class TabFacturacion extends React.Component {
         isOpen: true,
         isSuccess: true,
         isError: false,
-        title: "¡Baja de la facturacion exitosa!",
-        message: "La facturacion fue eliminado correctamente.",
+        title: "¡Baja del consumo exitoso!",
+        message: "El consumo fue eliminado correctamente.",
       },
     }));
   };
@@ -330,8 +330,8 @@ export default class TabFacturacion extends React.Component {
         isOpen: true,
         isSuccess: false,
         isError: true,
-        title: "Baja de la facturacion errónea",
-        message: "Oops! Ocurrió un error al eliminar la facturacion.",
+        title: "Baja del consumo errónea",
+        message: "Oops! Ocurrió un error al eliminar el consumo.",
       },
     }));
   };
@@ -423,10 +423,10 @@ export default class TabFacturacion extends React.Component {
                     {facturacion? Moment(facturacion.periodo, 'YYYY-MM-DD').format('MMM YYYY') : "-"}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    {facturacion?.kwh ?? "-"}
+                    {facturacion? "$ "+facturacion.kwh : "-"}
                   </StyledTableCell>                  
                   <StyledTableCell align="center">
-                    {facturacion?.consumoTotal ?? "-"}
+                    {facturacion? facturacion.consumoTotal+" Kw" : "-"}
                   </StyledTableCell> 
                   <StyledTableCell align="center">                  
                     <DeleteIcon
