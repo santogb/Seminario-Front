@@ -47,7 +47,7 @@ function RenewableEnergy() {
     const classes = useStyles();
     return (
         <div>
-      <Layout title="RenewableEnergy">
+      <Layout title="Ponostico">
         <div>
           <AppBar position="static">
             <StyledTabs
@@ -56,7 +56,7 @@ function RenewableEnergy() {
                 variant="fullWidth"
                 className={classes.customTabs}
                 centered>
-              <Tab label="Produccion Energia Renovable" icon={<FontAwesomeIcon icon={faSolarPanel} />} aria-label="person" {...tabProps(0)} />
+              <Tab label="Ponostico Generacion Energia Renovable" icon={<FontAwesomeIcon icon={faSolarPanel} />} aria-label="person" {...tabProps(0)} />
             </StyledTabs>
           </AppBar>
           <Iframe url="https://cdsrenovables.cammesa.com/renovableschart/#/pronostico"

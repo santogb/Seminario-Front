@@ -76,13 +76,13 @@ export default function ConsumosManuales() {
   const [tabIndex, setTabIndex] = React.useState(0);
   const [isLoadingConsumo, setIsLoadingConsumo] = React.useState(false); 
   const [consumo, setConsumo] = React.useState(null);
-  const [idUser, setidUser] = React.useState(null);
+  const [idUser, setidUsuario] = React.useState(null);
 
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
-  setidUser(getIdUser());
-  console.log(getIdUser())
+  
+  
   const recargarConsumo = () => {
 
     setIsLoadingConsumo(true);
@@ -114,16 +114,15 @@ export default function ConsumosManuales() {
               variant="fullWidth"
               className={classes.customTabs}
               centered>
-              <Tab className={classes.customTab} label="Gestión de Consumo y Cobros" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
+              <Tab className={classes.customTab} label="Gestión de Consumo" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
             </StyledTabs>
           </AppBar>
           
-          <TabPanel value={tabIndex} index={0}>
-            
+          <TabPanel value={tabIndex} index={0}>            
             {!isLoadingConsumo
                 && consumo !== null
                 && (
-              <TabConsumo Facturacion={consumo} recargarConsumoEvent={recargarConsumo} IdUsuario={getIdUser}/>
+              <TabConsumo Facturacion={consumo} recargarConsumoEvent={recargarConsumo} IdUsuario={getIdUser()}/>
             )}
             
             { (isLoadingConsumo && 
@@ -132,7 +131,6 @@ export default function ConsumosManuales() {
                 message2="Aguarde por favor."
               />
             )} 
-
           </TabPanel>
         </div>
       </Layout>

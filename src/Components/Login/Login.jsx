@@ -116,7 +116,7 @@ export default class Login extends Component {
         //LOGUEAR AUTOMATICAMENTE:
         setToken("1234");
         setActiveSession(true);
-        setIdUser("60a301314cede130149e6a13");
+        setIdUser("60a1ded49101f6237c9afe29");
         setIdTipoEmpleado("3");
         //HASTA ACÁ
 

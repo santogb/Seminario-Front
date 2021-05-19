@@ -98,7 +98,7 @@ export const get = async (endpoint) => {
     }
 };
 
-export const getById = async (endpoint, id) => {
+export const getById = async (endpoint, id) => {  
   return await get(endpoint + "?idUsuario=" + id);
 };
 

@@ -294,7 +294,7 @@ export default class TabFacturacion extends React.Component {
       isSaving: true,
     }));
 
-    eliminarConsumo({id:this.state.form.id,idUsuario:this.state.form.IdUsuario})
+    eliminarConsumo({id:this.state.form.id, idUsuario:this.state.form.IdUsuario})
       .then((response) => {
         this.onEliminarResponseOk(response);
         console.log(response)
@@ -412,8 +412,8 @@ export default class TabFacturacion extends React.Component {
             <TableHead>
               <TableRow>
                 <StyledTableCell align="center">Periodo</StyledTableCell>
-                <StyledTableCell align="center">Kwh ($)</StyledTableCell>
-                <StyledTableCell align="center">Consumo total</StyledTableCell>
+                <StyledTableCell align="center">Precio Kwh ($)</StyledTableCell>
+                <StyledTableCell align="center">Consumo Kw</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>

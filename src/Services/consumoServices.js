@@ -15,7 +15,7 @@ export const listarConsumos = async (data) => {
 };
 
 export const obtenerConsumo = async (id) => {
-  return await getById(endpoints.obtenerConsumoManual, id);
+  return await getById(endpoints.obtenerConsumoManual, {"idUsuario":id});
 };
 
 export const eliminarConsumo = async (data) => {

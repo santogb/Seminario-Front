@@ -56,15 +56,21 @@ export default function ModalConsumo(props) {
               {(props.modalABM === "A" || props.modalABM === "M") && (
                 <Grid container spacing={3}>
                   <Grid item xl={12} lg={12} md={12} xs={12}>
-                    <label ></label>
-                    <DatePicker
+                  <Textbox
+                      propName="Periodo"
+                      placeholder="Periodo"
+                      value={props.form.fechaVencTarjeta}
+                      handleChange={props.handleChange}                      
+                      isMonth
+                    /> 
+                    {/* <DatePicker
                       propName="Periodo"
                       placeholder="Periodo"
                       dateFormat="MMMM yyyy"
                       showMonthYearPicker
                       value={Moment(props.form.Periodo, 'YYYY-MM-DD').format('MMM YYYY')}
                       onChange={date => props.form.Periodo = date}
-                    />
+                    /> */}
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} xs={12}>
                     <Textbox
@@ -81,7 +87,8 @@ export default function ModalConsumo(props) {
                       value={props.form.titular}
                       handleChange={props.handleChange}                      
                     />
-                  </Grid> 
+                  </Grid>                  
+                  
                 </Grid>
               )}
               {props.modalABM === "B" && (
