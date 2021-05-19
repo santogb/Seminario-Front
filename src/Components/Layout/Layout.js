@@ -189,7 +189,7 @@ const Layout = ({ children, title, refresh }) => {
           <Divider />
           <div style={{ position: "absolute", bottom: 0 }}>
           <List>
-            <MenuListItem text="Mis datos" to="/misDatos" icon={<AccountCircleIcon style={{ color: "#404040" }} />} />
+            {/* <MenuListItem text="Mis datos" to="/misDatos" icon={<AccountCircleIcon style={{ color: "#404040" }} />} /> */}
             {esRolGerente() && <MenuListItem text="Datos Empresa" to="/datosEmpresa" icon={<ApartmentIcon style={{ color: "#404040" }} />} />}
             <MenuListItem onClick={() => logOut() } text="Cerrar sesión" to="/" icon={<ExitToAppIcon style={{ color: "#404040" }} />} />
           </List>
