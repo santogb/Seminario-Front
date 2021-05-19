@@ -69,7 +69,7 @@ function TabPanel(props) {
 export default function ConsumosManuales() {
   
   useEffect(() => {
-    document.title = "CityGym - Facturación"
+    document.title = "Infinite - Consumo"
   }, [])
 
   const classes = useStyles();

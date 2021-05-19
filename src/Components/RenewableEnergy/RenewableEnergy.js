@@ -40,6 +40,9 @@ const StyledTabs = withStyles({
     };
   }
 function RenewableEnergy() {
+  useEffect(() => {
+    document.title = "Infinite - Pronostico"
+  }, [])
     const [tabIndex, setTabIndex] = React.useState(0);
     const handleChange = (event, newTabIndex) => {
         setTabIndex(newTabIndex);

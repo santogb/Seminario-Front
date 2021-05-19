@@ -56,7 +56,7 @@ const CustomTextField = withStyles({
 export default class Login extends Component {
   constructor(props) {
 
-    document.title = "CityGym - Login";
+    document.title = "Infinite - Login";
 
     super(props);
     this.state = {
