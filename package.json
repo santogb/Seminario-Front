@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "3.0.0",
+    "@capacitor/cli": "^3.0.0",
+    "@capacitor/core": "^3.0.0",
     "@devexpress/dx-react-chart": "^2.7.5",
     "@devexpress/dx-react-chart-material-ui": "^2.7.5",
     "@devexpress/dx-react-core": "^2.7.5",
@@ -19,6 +22,7 @@
     "@testing-library/user-event": "^13.1.9",
     "axios": "^0.21.1",
     "bar-chart-react": "^1.0.2",
+    "capacitor": "^0.5.5",
     "create-react-app": "^4.0.3",
     "moment": "^2.29.1",
     "moment-recur": "^1.0.7",
