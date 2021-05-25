@@ -16,6 +16,7 @@ const endpoints = {
     eliminarConsumoManual:`${urlApi}/seminariobackend/eliminarConsumo`,
     editarConsumoManual:`${urlApi}/api/ConsumosManuales/editar`,
     crearConsumo:`${urlApi}/seminariobackend/crearConsumo`,
+    crearConsumoOCR:`${urlApi}/read-image`,
 }
 
 export default endpoints;

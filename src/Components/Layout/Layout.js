@@ -123,7 +123,7 @@ const Layout = ({ children, title, refresh }) => {
 
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(true);  
+  const [open, setOpen] = React.useState(false);  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -166,7 +166,7 @@ const Layout = ({ children, title, refresh }) => {
           </Toolbar>
         </AppBar>
         <Drawer
-          variant="permanent"
+          //variant="permanent"
           classes={{
             paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
           }}

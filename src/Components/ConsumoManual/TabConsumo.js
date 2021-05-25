@@ -14,12 +14,13 @@ import { styled } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ModalConsumo from './ModalConsumo';
 import Moment from 'moment'
+import GraficoConsumos from './GraficoConsumos'
 
 
 import { formatDateToString, formatDateWithTimeToStringPretty } from '../Common/DateHelpers';
 import { validateRequired } from "../Common/Validations";
 import { MessageModal, PaginationActions, CustomButton } from '../Common';
-import { crearConsumo,eliminarConsumo } from '../../Services/consumoServices';
+import { crearConsumo,eliminarConsumo,crearConsumoOCR } from '../../Services/consumoServices';
 
 const ButtonNuevoContainer = styled(Container)({
   textAlign: 'right',
@@ -65,12 +66,14 @@ export default class TabFacturacion extends React.Component {
       IdUsuario: this.props.IdUsuario,
       Periodo: "",
       kwh: "",
-      ConsumoTotal: ""      
+      ConsumoTotal: "",
+      photo:"" 
     };
   };
 
   handleChange = (prop, value) => {
     console.log(prop+' '+value)
+    debugger;
     this.setState((prevState) => ({
       ...prevState,
       form: {
@@ -113,20 +116,7 @@ export default class TabFacturacion extends React.Component {
     this.setState((prevState) => ({
       ...prevState,
       isModalOpenPDF: true,
-      modalIMP: method,
-      formPDF: {
-        ...prevState.formPDF,
-        tipoPago: facturacion?.tipoPago?.tipoPago,
-        cuotas: facturacion?.cuotas ?? "-",
-        numeroRecibo: facturacion?.id?.toString()?.padStart(10, "0"),
-        fecha: formatDateWithTimeToStringPretty(facturacion?.createdAt),
-        fechaHoy: formatDateWithTimeToStringPretty(formatDateToString(new Date())),
-        apellido: facturacion?.socio?.apellido,
-        nombre: facturacion?.socio?.nombre,
-        dni: facturacion?.socio?.dni,
-        tipoAbono: facturacion?.tipoAbono?.tipoAbono,
-        monto: facturacion?.monto,
-      },
+      modalIMP: method,     
     }));
   };
 
@@ -204,52 +194,43 @@ export default class TabFacturacion extends React.Component {
     && isCCVValid
     && isFechaVencTarjetaValid;
   };
-
-  validateSocioForm = async () => {
-    var isDniValid = await validateRequired(this.state.form.dni);
-
-    var dniValidationMessage = "Debe ingresar un DNI";
-
-    this.setState((prevState) => ({
-      ...prevState,
-      validations: {
-        ...prevState.validations,
-        dni: isDniValid,
-      },
-      validationMessages: {
-        ...prevState.validationMessages,
-        dni: dniValidationMessage,
-      },
-    }));
-
-    return isDniValid;
-  };
-
-  handleGuardar = async () => {
-    //const isValidForm = await this.validateForm();
-
-    //if (isValidForm && !this.state.isSaving) {
+  handleGuardar = async () => {    
       this.setState((prevState) => ({
         ...prevState,
         isSaving: true,
       }));
-
-      var request = {
-        idUsuario: this.state.form.IdUsuario,
-        periodo: this.state.form.Periodo,
-        kwh: this.state.form.kwh,
-        consumoTotal: this.state.form.ConsumoTotal
-      };
-      console.log(JSON.stringify(request))
-      crearConsumo(request)
-        .then((response) => {
-          this.onGuardarResponseOk(response);
-          console.log(JSON.stringify(response))
-        })
-        .catch((error) => {
-          this.onGuardarResponseError(error);
-        });
-      
+      debugger;
+      if(this.state.form.photo==""){
+        var request = {
+          idUsuario: this.state.form.IdUsuario,
+          periodo: this.state.form.Periodo,
+          kwh: this.state.form.kwh,
+          consumoTotal: this.state.form.ConsumoTotal
+        };
+        console.log(JSON.stringify(request))
+        crearConsumo(request)
+          .then((response) => {
+            this.onGuardarResponseOk(response);
+            console.log(JSON.stringify(response))
+          })
+          .catch((error) => {
+            this.onGuardarResponseError(error);
+          });
+      }
+      else{
+        debugger;
+        var request = {
+          imgUrl: this.state.form.photo
+        };
+        crearConsumoOCR(request)
+          .then((response) => {
+            this.onGuardarResponseOk(response);
+            console.log(JSON.stringify(response))
+          })
+          .catch((error) => {
+            this.onGuardarResponseError(error);
+          });
+      }
     //}
   };
 
@@ -387,7 +368,7 @@ export default class TabFacturacion extends React.Component {
   };
 
   render() {
-    var rowsPerPage = 5;
+    var rowsPerPage = 12;
     var emptyRows =
       this.props.Facturacion != null
         ? rowsPerPage -
@@ -403,12 +384,13 @@ export default class TabFacturacion extends React.Component {
     );    
     return (
       <div>
+        <GraficoConsumos GraphData={facturacionPaginado}/>
         <ButtonNuevoContainer maxWidth="lg">
           <CustomButton handleClick={this.handleAlta} text="Nuevo Consumo" />
         </ButtonNuevoContainer>
 
         <TableContainer component={Paper} style={{ margin: "10px 0 0 0" }}>
-          <Table style={{ minWidth: 700 }} aria-label="simple table">
+          <Table /* style={{ minWidth: 700 }} */ aria-label="simple table">
             <TableHead>
               <TableRow>
                 <StyledTableCell align="center">Periodo</StyledTableCell>

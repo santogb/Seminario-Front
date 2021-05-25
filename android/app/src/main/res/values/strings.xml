@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Infinity</string>
+    <string name="title_activity_main">Infinity</string>
+    <string name="package_name">io.ionic.Infinity</string>
+    <string name="custom_url_scheme">io.ionic.Infinity</string>
+</resources>

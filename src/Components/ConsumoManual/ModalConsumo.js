@@ -13,6 +13,10 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import "./DatePickerStyle.scss";
 import Moment from 'moment'
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet } from '@ionic/react';
+import { camera } from 'ionicons/icons';
+import { usePhotoGallery} from '../../hooks/usePhotoGallery';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ModalConsumo(props) {
   const classes = useStyles();
-
+  const { deletePhoto, photos, takePhoto } = usePhotoGallery({PropName:"photo",handleChange:props.handleChange});  
   return (
     <div>
       {props.isOpen && (
@@ -54,12 +58,12 @@ export default function ModalConsumo(props) {
           <DialogContent dividers>
             <form className={classes.root} autoComplete="off">
               {(props.modalABM === "A" || props.modalABM === "M") && (
-                <Grid container spacing={3}>
+                <Grid container spacing={3}>                  
                   <Grid item xl={12} lg={12} md={12} xs={12}>
                   <Textbox
                       propName="Periodo"
                       placeholder="Periodo"
-                      value={props.form.fechaVencTarjeta}
+                      value={props.form.Periodo}
                       handleChange={props.handleChange}                      
                       isMonth
                     />
@@ -68,7 +72,7 @@ export default function ModalConsumo(props) {
                     <Textbox
                       propName="kwh"
                       placeholder="Kwh ($)"
-                      value={props.form.monto} 
+                      value={props.form.kwh} 
                       handleChange={props.handleChange}                     
                     />
                   </Grid>
@@ -76,12 +80,22 @@ export default function ModalConsumo(props) {
                     <Textbox
                       propName="ConsumoTotal"
                       placeholder="Consumo Total"
-                      value={props.form.titular}
+                      value={props.form.ConsumoTotal}
                       handleChange={props.handleChange}                      
                     />
-                  </Grid>                  
-                  
-                </Grid>
+                  </Grid>
+                  <Grid item xl={6} lg={6} md={12} xs={12}>
+                    <IonFab horizontal="right">
+                      <IonFabButton onClick={() => {
+                          takePhoto({PropName:"photo",handleChange:props.handleChange});                           
+                        } } >
+                        <IonIcon icon={camera}></IonIcon>
+                      </IonFabButton>
+                    </IonFab>
+                  </Grid> 
+                  <Grid item xl={6} lg={6} md={12} xs={12}>                  
+                  </Grid>
+                </Grid>                                
               )}
               {props.modalABM === "B" && (
                 <p>
@@ -90,7 +104,7 @@ export default function ModalConsumo(props) {
               )}
             </form>
           </DialogContent>
-          <DialogActions>
+          <DialogActions>            
             <CustomButton
               isLoading={props.isSaving}
               handleClick={

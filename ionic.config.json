@@ -1,0 +1,7 @@
+{
+  "name": "Infinity",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

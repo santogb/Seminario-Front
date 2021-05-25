@@ -9,6 +9,11 @@ export const crearConsumo = async (data) => {
     consumoTotal: data.consumoTotal
   });
 };
+export const crearConsumoOCR = async (data) => {
+  return await post(endpoints.crearConsumoOCR, {
+    imgUrl: data.imgUrl
+  });
+};
 
 export const listarConsumos = async (data) => {
   return await getById(endpoints.listarConsumosManuales,data);
