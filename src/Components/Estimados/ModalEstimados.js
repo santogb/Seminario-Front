@@ -8,8 +8,16 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import { Textbox, CustomButton } from "../Common";
-import Container from '@material-ui/core/Container';
+import { Textbox, Dropdown, CustomButton } from "../Common";
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css';
+import "../Common/DatePickerStyle.scss";
+import Moment from 'moment'
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet } from '@ionic/react';
+import { camera } from 'ionicons/icons';
+import { usePhotoGallery} from '../../hooks/usePhotoGallery';
+
+
 
 const useStyles = makeStyles((theme) => ({
   closeButton: {
@@ -20,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ModalTipoAbono(props) {
+export default function ModalConsumo(props) {
   const classes = useStyles();
-
+  const { deletePhoto, photos, takePhoto } = usePhotoGallery({PropName:"photo",handleChange:props.handleChange});  
   return (
     <div>
       {props.isOpen && (
@@ -35,9 +43,9 @@ export default function ModalTipoAbono(props) {
         >
           <MuiDialogTitle disableTypography id="alert-dialog-title">
             <Typography variant="h6">
-              {props.modalABM === "A" && <span>Alta de Tipo de Abono</span>}
-              {props.modalABM === "B" && <span>Baja de Tipo de Abono</span>}
-              {props.modalABM === "M" && <span>Edición de Tipo de Abono</span>}
+              {props.modalABM === "A" && <span>Alta de Consumo</span>}
+              {props.modalABM === "B" && <span>Baja de Consumo</span>}
+              {props.modalABM === "M" && <span>Edición de Consumo</span>}
             </Typography>
             <IconButton
               aria-label="close"
@@ -50,52 +58,53 @@ export default function ModalTipoAbono(props) {
           <DialogContent dividers>
             <form className={classes.root} autoComplete="off">
               {(props.modalABM === "A" || props.modalABM === "M") && (
-                <Container>
-                <Grid container spacing={3}>
-                    <Grid item xl={12} lg={12} md={12} xs={12}>
-                    <Textbox
-                      propName="tipoAbono"
-                      placeholder="Tipo"
-                      value={props.form.tipoAbono}
-                      handleChange={props.handleChange}
-                      isValid={props.validations.tipoAbono}
-                      validationMessage={props.validationMessages.tipoAbono}
+                <Grid container spacing={3}>                  
+                  <Grid item xl={12} lg={12} md={12} xs={12}>
+                  <Textbox
+                      propName="Periodo"
+                      placeholder="Periodo"
+                      value={props.form.Periodo}
+                      handleChange={props.handleChange}                      
+                      isMonth
                     />
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} xs={12}>
                     <Textbox
-                      propName="precio"
-                      placeholder="Precio"
-                      value={props.form.precio}
-                      handleChange={props.handleChange}
-                      isValid={props.validations.precio}
-                      isNumber
-                      validationMessage={props.validationMessages.precio}
+                      propName="kwh"
+                      placeholder="Kwh ($)"
+                      value={props.form.kwh} 
+                      handleChange={props.handleChange}                     
                     />
                   </Grid>
-                  <Grid item xl={12} lg={12} md={12} xs={12}>
+                  <Grid item xl={6} lg={6} md={12} xs={12}>
                     <Textbox
-                      propName="cantDias"
-                      placeholder="Cant. Días"
-                      value={props.form.cantDias}
-                      handleChange={props.handleChange}
-                      isValid={props.validations.cantDias}
-                      isNumber
-                      validationMessage={props.validationMessages.cantDias}
+                      propName="ConsumoTotal"
+                      placeholder="Consumo Total"
+                      value={props.form.ConsumoTotal}
+                      handleChange={props.handleChange}                      
                     />
                   </Grid>
-                </Grid>
-                </Container>
+                  <Grid item xl={6} lg={6} md={12} xs={12}>
+                    <IonFab horizontal="right">
+                      <IonFabButton onClick={() => {
+                          takePhoto({PropName:"photo",handleChange:props.handleChange});                           
+                        } } >
+                        <IonIcon icon={camera}></IonIcon>
+                      </IonFabButton>
+                    </IonFab>
+                  </Grid> 
+                  <Grid item xl={6} lg={6} md={12} xs={12}>                  
+                  </Grid>
+                </Grid>                                
               )}
               {props.modalABM === "B" && (
                 <p>
-                  ¿Está seguro de que desea eliminar el tipo de abono '
-                  {props.form?.tipoAbono}'?
+                  ¿Está seguro de que desea dar de baja el Consumo?
                 </p>
               )}
             </form>
           </DialogContent>
-          <DialogActions>
+          <DialogActions>            
             <CustomButton
               isLoading={props.isSaving}
               handleClick={

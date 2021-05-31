@@ -11,21 +11,20 @@ import { Filesystem, Directory } from "@capacitor/filesystem";
 import { Storage } from "@capacitor/storage";
 import { Capacitor } from "@capacitor/core";
 
-
 export function usePhotoGallery({PropName,handleChange}) {
   const [photos, setPhotos] = useState();
   const takePhoto = async () => {
     const cameraPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Camera,
       quality: 100,
     });
     const fileName = new Date().getTime() + ".jpeg";
     const newPhotos = 
-      {        
-        webviewPath: cameraPhoto.webPath,
-      };
-      handleChange(PropName, cameraPhoto.webPath)
+    {        
+      webviewPath: cameraPhoto.webPath,
+    };
+    handleChange(PropName,cameraPhoto.base64String)
     setPhotos(newPhotos);
   };
   return {

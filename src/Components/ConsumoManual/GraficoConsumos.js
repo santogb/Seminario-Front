@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Bar } from 'react-chartjs-2';
 import Moment from 'moment'
-import { blue } from "@material-ui/core/colors";
 
 export default class GraficoConsumos extends React.Component {
     constructor(props) {

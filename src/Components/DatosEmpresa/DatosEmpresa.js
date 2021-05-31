@@ -11,7 +11,6 @@ import TabDatosEmpresa from "./TabDatosEmpresa.js";
 
 import { LoadingData } from '../Common';
 
-import { listarDatosEmpresa } from '../../Services/datosEmpresaServices';
 
 TabPanel.propTypes = {
   children: PropTypes.node,

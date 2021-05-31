@@ -5,7 +5,8 @@ import {
   Home,
   RenewableEnergy,
   ConsumoManual,
-  Facturacion
+  Miscelaneo,
+  Estimados,
 } from './Components';
 
 
@@ -17,10 +18,11 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/auth/login" component={Login} />
-          <ProtectedRoute exact path="/" component={Home} />
-          <AdministrativoRoute exact path="/Facturacion" component={Facturacion} />
-          <AdministrativoRoute exact path="/RenewableEnergy" component={RenewableEnergy} />
-          <AdministrativoRoute exact path="/ConsumoManual" component={ConsumoManual} />
+          <ProtectedRoute exact path="/" component={Home} />          
+          <AdministrativoRoute exact path="/RenewableEnergy" component={RenewableEnergy}/>
+          <AdministrativoRoute exact path="/ConsumoManual" component={ConsumoManual}/>
+          <AdministrativoRoute exact path="/Estimados" component={Estimados}/>
+          <AdministrativoRoute exact path="/Miscelaneo" component={Miscelaneo}/>
           <Route path="*" component={() => "404 not Found"} />
         </Switch>
       </BrowserRouter>

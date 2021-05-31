@@ -101,6 +101,9 @@ export const get = async (endpoint) => {
 export const getById = async (endpoint, id) => {  
   return await get(endpoint + "?idUsuario=" + id);
 };
+export const getByIdAt = async (endpoint, id,atribute) => {  
+  return await get(endpoint + "?"+atribute+"=" + id);
+};
 
 export const deleteById = async (endpoint, request) => {
 

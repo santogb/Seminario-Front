@@ -16,7 +16,15 @@ const endpoints = {
     eliminarConsumoManual:`${urlApi}/seminariobackend/eliminarConsumo`,
     editarConsumoManual:`${urlApi}/api/ConsumosManuales/editar`,
     crearConsumo:`${urlApi}/seminariobackend/crearConsumo`,
-    crearConsumoOCR:`${urlApi}/read-image`,
+    crearConsumoOCR:`${urlApi}/seminariobackend/ocrimage2`,
+
+
+    listarEstimados:`${urlApi}/seminariobackend/obtenerConsumoEstimadoPorUsuario`,
+    eliminarEstimado:`${urlApi}/seminariobackend/eliminarConsumoEstimado`,
+    obtenerEstimado:`${urlApi}/seminariobackend/obtenerConsumoEstimado`,
+    crearEstimado:`${urlApi}/seminariobackend/crearConsumoEstimado`,
+
+    obtenerElectrodomestico:`${urlApi}/seminariobackend/obtenerElectrodomestico`,
 }
 
 export default endpoints;

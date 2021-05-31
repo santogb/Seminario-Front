@@ -121,7 +121,7 @@ export default function ConsumosManuales() {
             {!isLoadingConsumo
                 && consumo !== null
                 && (
-              <TabConsumo Facturacion={consumo} recargarConsumoEvent={recargarConsumo} IdUsuario={getIdUser()}/>
+              <TabConsumo datos={consumo} recargarConsumoEvent={recargarConsumo} IdUsuario={getIdUser()}/>
             )}
             
             { (isLoadingConsumo && 

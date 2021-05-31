@@ -2,28 +2,22 @@ import Login from './Login/Login';
 import Home from './Home/Home';
 import Socios from './Socios/Socios';
 import Servicios from './Servicios/Servicios';
-import Empleados from './Empleados/Empleados';
-import Ingresos from './Ingresos/Ingresos';
-import Abonos from './Abonos/Abonos';
-import Facturacion from './Facturacion/Facturacion';
 import RenewableEnergy from './RenewableEnergy/RenewableEnergy';
 import ConsumoManual from './ConsumoManual/ConsumoManual';
-import Liquidacion from './Liquidacion/Liquidacion';
 import MisDatos from './MisDatos/MisDatos';
 import DatosEmpresa from './DatosEmpresa/DatosEmpresa';
+import Miscelaneo from './Miscelaneo/Miscelaneo';
+import Estimados from './Estimados/Estimados';
 
 export {
     Login,
     Home,
     Socios,
     Servicios,
-    Empleados,
-    Ingresos,
-    Abonos,
-    Facturacion,
-    Liquidacion,
     MisDatos,
     DatosEmpresa,
     RenewableEnergy,
-    ConsumoManual
+    ConsumoManual,
+    Miscelaneo,
+    Estimados
 }

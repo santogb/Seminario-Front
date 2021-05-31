@@ -11,7 +11,6 @@ import TabSocios from "./TabSocios.js";
 
 import { LoadingData } from '../Common';
 import { listarSocios } from '../../Services/sociosServices';
-import { listarTiposAbono } from '../../Services/tiposAbonoServices';
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -96,17 +95,7 @@ export default function Socios() {
   }
 
   const recargarTiposAbono = () => {
-
     setIsLoadingTiposAbono(true);
-
-    listarTiposAbono()
-      .then((response) => {
-        setTiposAbono(response?.status === "OK" ? response.tiposAbono : []);
-        setIsLoadingTiposAbono(false);
-      })
-      .catch(error => {
-        setIsLoadingTiposAbono(false);
-      });
   }
 
   if (socios === null && !isLoadingSocios) {
