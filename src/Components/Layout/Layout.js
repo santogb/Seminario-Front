@@ -30,7 +30,7 @@ import MenuListItem from './MenuListItem';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSolarPanel,faMoneyBillWave,faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
-import logo from "../../Assets/Images/infinite transparente.svg";
+import logo from "../../Assets/Images/infinite-logo-small.png";
 import theme from './Theme.js';
 import Copyright from './Copyright.js';
 
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-    "background-color": "#465022",
+    "background-color": "#588a63",
     fontWeight: "bold"
   },
   toolbarIcon: {
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: "0 8px",
-    "background-color": "#BDC9D4",
+    "background-color": "#bfe4c7",
     ...theme.mixins.toolbar,
   },
   appBar: {
@@ -93,11 +93,11 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    "background-color": "#BDC9D4"
+    "background-color": "#bfe4c7"
   },
   drawerPaperClose: {
     overflowX: "hidden",
-    "background-color": "#BDC9D4",
+    "background-color": "#bfe4c7",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

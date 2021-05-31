@@ -5,7 +5,7 @@ import "./Login.scss";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Logo from "../../Assets/Images/infinite transparente.svg";
+import Logo from "../../Assets/Images/infinite-logo-small.png";
 import { login } from "../../Services/empleadosServices";
 import {
   setToken,

@@ -437,13 +437,13 @@ export default class TabSocios extends React.Component {
         fechaHasta: formatDateToString(fechaHasta),
       };
 
-      crearAbono(request)
-        .then((response) => {
-          this.onGuardarAbonoResponseOk(response);
-        })
-        .catch((error) => {
-          this.onGuardarAbonoResponseError(error);
-        });
+      // crearAbono(request)
+      //   .then((response) => {
+      //     this.onGuardarAbonoResponseOk(response);
+      //   })
+      //   .catch((error) => {
+      //     this.onGuardarAbonoResponseError(error);
+      //   });
     }
   };
 

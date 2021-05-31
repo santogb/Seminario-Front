@@ -78,23 +78,23 @@ export default function DatosEmpresa() {
     setTabIndex(newTabIndex);
   };
 
-  const recargarDatosEmpresa = () => {
+  // const recargarDatosEmpresa = () => {
 
-    setIsLoadingDatos(true);
+  //   setIsLoadingDatos(true);
 
-    listarDatosEmpresa()
-      .then((response) => {
-        setDatos(response.datosEmpresa[0]);
-        setIsLoadingDatos(false);
-      })
-      .catch(error => {
-        setIsLoadingDatos(false);
-      });
-  }
+  //   listarDatosEmpresa()
+  //     .then((response) => {
+  //       setDatos(response.datosEmpresa[0]);
+  //       setIsLoadingDatos(false);
+  //     })
+  //     .catch(error => {
+  //       setIsLoadingDatos(false);
+  //     });
+  // }
 
-  if (datos === null && !isLoadingDatos) {
-    recargarDatosEmpresa();
-  }
+  // if (datos === null && !isLoadingDatos) {
+  //   recargarDatosEmpresa();
+  // }
 
   return (
   <div>
@@ -112,9 +112,9 @@ export default function DatosEmpresa() {
           </AppBar>
           <TabPanel value={tabIndex} index={0}>
 
-            {!isLoadingDatos && datos !== null && (
+            {/* {!isLoadingDatos && datos !== null && (
               <TabDatosEmpresa data={datos} recargarDatosEmpresaEvent={recargarDatosEmpresa} />
-            )}
+            )} */}
 
             {isLoadingDatos && (
               <LoadingData

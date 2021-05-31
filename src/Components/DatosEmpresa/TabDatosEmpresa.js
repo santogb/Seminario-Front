@@ -62,13 +62,13 @@ export default function MisDatos(props) {
         cajaAhorro: form?.cajaAhorro,
       };
 
-      editarDatosEmpresa(request)
-        .then((response) => {
-          onGuardarResponseOk(response);
-        })
-        .catch((error) => {
-          onGuardarResponseError(error);
-        });
+      // editarDatosEmpresa(request)
+      //   .then((response) => {
+      //     onGuardarResponseOk(response);
+      //   })
+      //   .catch((error) => {
+      //     onGuardarResponseError(error);
+      //   });
     }
   };
 
