@@ -7,6 +7,7 @@ import {
   ConsumoManual,
   Miscelaneo,
   Estimados,
+  DiaADia,
 } from './Components';
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/auth/login" component={Login} />
           <ProtectedRoute exact path="/" component={Home} />          
           <AdministrativoRoute exact path="/RenewableEnergy" component={RenewableEnergy}/>
+          <AdministrativoRoute exact path="/DiaADia" component={DiaADia}/>
           <AdministrativoRoute exact path="/ConsumoManual" component={ConsumoManual}/>
           <AdministrativoRoute exact path="/Estimados" component={Estimados}/>
           <AdministrativoRoute exact path="/Miscelaneo" component={Miscelaneo}/>

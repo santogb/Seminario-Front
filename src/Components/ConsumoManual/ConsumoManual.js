@@ -76,6 +76,7 @@ export default function ConsumosManuales() {
   const [tabIndex, setTabIndex] = React.useState(0);
   const [isLoadingConsumo, setIsLoadingConsumo] = React.useState(false); 
   const [consumo, setConsumo] = React.useState(null);
+  const [counter, setCounter] = React.useState(0);
 
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
@@ -98,7 +99,8 @@ export default function ConsumosManuales() {
     
   }
 
-  if (consumo === null && !isLoadingConsumo) {
+  if (consumo === null && !isLoadingConsumo && counter<5) {
+    setCounter(counter+1)
     recargarConsumo();
   }
   

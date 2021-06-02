@@ -3,6 +3,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import Layout from '../Layout/Layout.js';
 import { listarEstimados } from '../../Services/estimadosServices';
+import {listarElectrodomestico} from '../../Services/electrodomesticosServices';
 import {getIdUser} from "../../Services/sessionServices";
 import TabEstimados from "./TabEstimados.js";
 import AppBar from '@material-ui/core/AppBar';
@@ -65,6 +66,9 @@ export default function Estimados() {
     const [isLoadingEstimados, setIsLoadingEstimados] = React.useState(false); 
     const [estimados, setEstimado] = React.useState(null);
 
+    const [isLoadingElectrodomesticos, setIsLoadingElectrodomesticos] = React.useState(false); 
+    const [electrodomesticos, setElectrodomesticos] = React.useState(null);
+
     const handleChange = (event, newTabIndex) => {
         setTabIndex(newTabIndex);
     };
@@ -74,7 +78,7 @@ export default function Estimados() {
         console.log(idUsuario)
         listarEstimados(idUsuario)
         .then((response) => {      
-            //console.log(response)
+            console.log(response)
             setEstimado(response.status == 200 ? response.data : []);
             setIsLoadingEstimados(false);          
         })
@@ -82,10 +86,28 @@ export default function Estimados() {
             setIsLoadingEstimados(false);
         });    
     }
+    const recargarElectrodomesticos = () => {
+        setIsLoadingElectrodomesticos(true);
+        console.log(idUsuario)
+        listarElectrodomestico()
+        .then((response) => {      
+            //console.log(response)
+            setElectrodomesticos(response.status == 200 ? response.data : []);
+            console.log(response)
+            setIsLoadingElectrodomesticos(false);          
+        })
+        .catch(error => {
+            setIsLoadingElectrodomesticos(false);
+        });    
+    }
     if (estimados === null && !isLoadingEstimados) {
         recargarEstimados();
     }
-    return(
+    if (electrodomesticos === null && !isLoadingElectrodomesticos) {
+      recargarElectrodomesticos();
+    } 
+    
+    return(      
     <div>
         <Layout title="Consumo">
         <div className={classes.root}>
@@ -103,8 +125,8 @@ export default function Estimados() {
           <TabPanel value={tabIndex} index={0}>            
             {!isLoadingEstimados
                 && estimados !== null
-                && (
-              <TabEstimados datos={estimados} recargarEstimadosEvent={recargarEstimados} IdUsuario={getIdUser()}/>
+                && !isLoadingElectrodomesticos && electrodomesticos &&(
+              <TabEstimados datos={estimados} electro={electrodomesticos} recargarEstimadosEvent={recargarEstimados} IdUsuario={getIdUser()}/>
             )}
             
             { (isLoadingEstimados && 

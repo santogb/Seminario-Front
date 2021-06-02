@@ -78,8 +78,6 @@ export default class Table extends React.Component {
                 this.props.datos.length - this.state.page * this.props.rowsPerPage
               )
             : this.props.rowsPerPage;
-        console.log(this.props.columnas);
-        console.log(this.props.datos);         
         return(
             <div>                      
                 <TableContainer component={Paper} style={{ margin: "10px 0 0 0" }}>
@@ -95,9 +93,9 @@ export default class Table extends React.Component {
                             {datosPaginados?.map((dato) => (
                                 <StyledTableRow key={dato["id"]}>
                                     {this.props.WhatToShow.map((property) => (                                    
-                                        <StyledTableCell align="center">                   
+                                        <StyledTableCell align="center" id={property.nombre}>                   
                                             {
-                                                property.nombre =="periodo" ? Moment(dato[property.nombre],'YYYY-MM-DD').format('MMM YYYY') : dato? dato[property.nombre] : "-"                                                
+                                                property.nombre =="periodo" ? Moment(dato[property.nombre],'YYYY-MM-DD').format('MMM YYYY') : dato? ""+dato[property.nombre] : "-"                                                
                                             }
                                         </StyledTableCell>                                    
                                     ))}

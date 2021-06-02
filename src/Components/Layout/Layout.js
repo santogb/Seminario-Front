@@ -28,7 +28,7 @@ import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import MenuListItem from './MenuListItem';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSolarPanel,faMoneyBillWave,faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faSolarPanel,faMoneyBillWave,faPlusSquare,faChartLine } from "@fortawesome/free-solid-svg-icons";
 
 import logo from "../../Assets/Images/infinite-logo-small.png";
 import theme from './Theme.js';
@@ -182,6 +182,7 @@ const Layout = ({ children, title, refresh }) => {
           <List>
             <MenuListItem text="Inicio" to="/" icon={<HomeIcon style={{ color: "#404040" }} />} />            
             {esRolAdministrativo() && <MenuListItem text="Pronostico" to="/RenewableEnergy" icon={<FontAwesomeIcon icon={faSolarPanel}style={{ color: "#404040" }}/>} />}
+            {esRolAdministrativo() && <MenuListItem text="Mi Dia a Dia" to="/DiaADia" icon={<FontAwesomeIcon icon={faChartLine}style={{ color: "#404040" }}/>} />}
             {esRolAdministrativo() && <MenuListItem text="Consumo" to="/ConsumoManual" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />}
             {esRolAdministrativo() && <MenuListItem text="Estimados" to="/Estimados" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />}
             {esRolAdministrativo() && <MenuListItem text="Mi Pais" to="/Miscelaneo" icon={<FontAwesomeIcon icon={faPlusSquare}style={{ color: "#404040" }}/>} />}            

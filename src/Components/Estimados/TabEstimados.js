@@ -31,11 +31,8 @@ export default class TabEstimados extends React.Component {
     }
     initializeForm = () => {
         return {
-          IdUsuario: this.props.IdUsuario,
-          id: "",
-          electrodomestico: "",
-          tiempo: "",
-          status:"" 
+          electrodomestico: 0,
+          tiempo: 0,           
         };
     };
     initializeColumnas = () => {
@@ -49,9 +46,9 @@ export default class TabEstimados extends React.Component {
             {
                 nombre: "Consumo"
             },
-            {
+            /* {
                 nombre: "Status"
-            },
+            }, */
         ];
     };
     initializeWhatToShow = () => {
@@ -65,9 +62,9 @@ export default class TabEstimados extends React.Component {
             {
               nombre: "consumo"
             }, 
-            {
+            /* {
               nombre: "status"
-            },            
+            },  */           
         ];
     };
     handleChange = (prop, value) => {
@@ -108,10 +105,10 @@ export default class TabEstimados extends React.Component {
           isSaving: true,
         }));   
         var request = {
-        idUsuario: this.state.form.IdUsuario,
-        periodo: this.state.form.Periodo,
-        kwh: this.state.form.kwh,
-        consumoTotal: this.state.form.ConsumoTotal
+          idUsuario: this.state.form.IdUsuario,
+          tiempo: this.state.form.tiempo,
+          kwh: this.state.form.kwh,
+          consumoTotal: this.state.form.ConsumoTotal
         };
         console.log(JSON.stringify(request))
         crearEstimado(request)
@@ -140,14 +137,15 @@ export default class TabEstimados extends React.Component {
       this.props.datos.forEach(dato => {
         var tabla={
           electrodomestico:"",
-          tiempo:0,
-          consumo:0,
+          tiempo:"",
+          consumo:"",
           status:""
         };        
-        obtenerElectrodomestico(dato.electrodomestico[0]).then(response=>{
+        obtenerElectrodomestico(dato.electrodomestico).then(response=>{
+          console.log(response)
           tabla.electrodomestico=response.data?.nombre;
-          tabla.tiempo=dato.tiempo;
-          tabla.consumo=dato.tiempo*response.data?.whPromedio;
+          tabla.tiempo=dato.tiempo + " min.";
+          tabla.consumo=dato.tiempo*response.data?.whPromedio+" wh";
           tabla.status=dato.status;
         });
         list.push(tabla);
@@ -158,10 +156,11 @@ export default class TabEstimados extends React.Component {
     render() {
         console.log(this.state.DataToShow)
         var rowsPerPage = 5;
-        var datosPaginados = /*this.props.datos*/this.state.DataToShow?.slice(
+        var datosPaginados = this.state.DataToShow?.slice(
           this.state.page * rowsPerPage,
           this.state.page * rowsPerPage + rowsPerPage
         );
+        console.log(this.props.electro);
         return (
           <div>
             {/* <GraficoConsumos GraphData={datosPaginados}/> */}
@@ -170,13 +169,13 @@ export default class TabEstimados extends React.Component {
             </ButtonNuevoContainer>
                
             <MyTable 
-            datos={this.state.DataToShow} 
-            rowsPerPage={rowsPerPage} 
-            columnas={this.state.columnas}
-            WhatToShow={this.state.WhatToShow} 
-            handleChangePageEvent={this.handleChangePage}
-            page={this.state.page}
-            totalAmount={this.state.DataToShow?.length}
+              datos={this.state.DataToShow} 
+              rowsPerPage={rowsPerPage} 
+              columnas={this.state.columnas}
+              WhatToShow={this.state.WhatToShow} 
+              handleChangePageEvent={this.handleChangePage}
+              page={this.state.page}
+              totalAmount={this.state.DataToShow?.length}
             />
     
             <ModalEstimados
@@ -188,6 +187,7 @@ export default class TabEstimados extends React.Component {
               tiposPago={this.props.tiposPago}
               validations={this.state.validations}
               validationMessages={this.state.validationMessages}
+              electrodomesticos = {this.props.electro}
               handleGuardar={this.handleGuardar}
               handleEliminar={this.handleEliminar}
               handleCerrar={this.handleCerrar}  

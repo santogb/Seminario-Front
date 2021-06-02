@@ -8,6 +8,7 @@ import MisDatos from './MisDatos/MisDatos';
 import DatosEmpresa from './DatosEmpresa/DatosEmpresa';
 import Miscelaneo from './Miscelaneo/Miscelaneo';
 import Estimados from './Estimados/Estimados';
+import DiaADia from './DiaADia/diaAdia';
 
 export {
     Login,
@@ -19,5 +20,6 @@ export {
     RenewableEnergy,
     ConsumoManual,
     Miscelaneo,
-    Estimados
+    Estimados,
+    DiaADia
 }

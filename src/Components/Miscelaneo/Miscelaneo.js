@@ -4,11 +4,11 @@ import Iframe from 'react-iframe';
 
 export default function Miscelaneo(){
     useEffect(() => {
-        document.title = "Infinite - Miscelaneo"
+        document.title = "Infinite - Mi Pais"
       }, [])
     return (
         <div>
-            <Layout title="Miscelaneo">     
+            <Layout title="Mi Pais">     
             <Iframe url="https://cdsrenovables.cammesa.com/renovableschart/#/totalesLineAndPie"
                             width="100%"
                             height="2000px"

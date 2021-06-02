@@ -1,4 +1,4 @@
-const urlApi = process.env.REACT_APP_BACKEND_APP_URL || "https://seminario-1.herokuapp.com"; 
+const urlApi = process.env.REACT_APP_BACKEND_APP_URL || /*"http://localhost:8080"*/"https://seminario-1.herokuapp.com"; 
 
 const endpoints = {
    //empleados endpoints
@@ -25,6 +25,10 @@ const endpoints = {
     crearEstimado:`${urlApi}/seminariobackend/crearConsumoEstimado`,
 
     obtenerElectrodomestico:`${urlApi}/seminariobackend/obtenerElectrodomestico`,
+    listarElectrodomestico:`${urlApi}/seminariobackend/listarElectrodomestico`,
+    
+
+    listarConsumosAutomaticos:`${urlApi}/seminariobackend/obtenerConsumoAutomaticoPorUsuario`,
 }
 
 export default endpoints;

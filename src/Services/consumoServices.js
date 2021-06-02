@@ -27,6 +27,10 @@ export const eliminarConsumo = async (data) => {
   return await deleteById(endpoints.eliminarConsumoManual, { data: { "idConsumo": data.id,"idUsuario": data.idUsuario } });
 };
 
+export const listarConsumosAutomaticos = async (data) => {
+  return await getById(endpoints.listarConsumosAutomaticos,data);
+};
+
 export const editarConsumo = async (data) => {
   return await post(endpoints.editarConsumoManual, {
     id: data.id,

@@ -122,8 +122,13 @@ export default class TabConsumo extends React.Component {
         };
         crearConsumoOCR(request)
           .then((response) => {
-            this.onGuardarResponseOk(response);
-            console.log(JSON.stringify(response))
+            console.log(response)
+            crearConsumo(request).then((response) => {
+              this.onGuardarResponseOk(response);            
+            })
+            .catch((error) => {
+              this.onGuardarResponseError(error);
+            });
           })
           .catch((error) => {
             this.onGuardarResponseError(error);
