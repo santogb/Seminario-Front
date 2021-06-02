@@ -61,7 +61,7 @@ const StyledTabs = withStyles({
 export default function DiaAdia() {
   
     useEffect(() => {
-      document.title = "Infinite - Consumo"
+      document.title = "Infinite - Dia a dia"
     }, [])
   
     const classes = useStyles();
@@ -98,7 +98,7 @@ export default function DiaAdia() {
 
     return (
         <div>
-            <Layout title="Consumo">
+            <Layout title="Dia a dia">
                 <div className={classes.root}>
                 <AppBar position="static">
                     <StyledTabs

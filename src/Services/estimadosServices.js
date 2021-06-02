@@ -4,8 +4,9 @@ import { get, getById, post, deleteById } from "./endpointServices";
 export const crearEstimado = async (data) => {
     return await post(endpoints.crearEstimado, {
         idUsuario: data.idUsuario,
-        tiempo: data.periodo,
-        status: "bueno"
+        tiempo: data.tiempo,
+        status: "bueno",
+        idElectrodomestico: data.idElectrodomestico
     });
 };
 

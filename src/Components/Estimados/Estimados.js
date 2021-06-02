@@ -109,7 +109,7 @@ export default function Estimados() {
     
     return(      
     <div>
-        <Layout title="Consumo">
+        <Layout title="Estimado">
         <div className={classes.root}>
           <AppBar position="static">
             <StyledTabs
@@ -118,7 +118,7 @@ export default function Estimados() {
               variant="fullWidth"
               className={classes.customTabs}
               centered>
-              <Tab className={classes.customTab} label="Gestión de Consumo" aria-label="person" {...tabProps(0)} />
+              <Tab className={classes.customTab} label="Estimado" aria-label="person" {...tabProps(0)} />
             </StyledTabs>
           </AppBar>
           
@@ -131,7 +131,7 @@ export default function Estimados() {
             
             { (isLoadingEstimados && 
               <LoadingData
-                message="Cargando Consumos..."
+                message="Calcular consumo estimados"
                 message2="Aguarde por favor."
               />
             )} 

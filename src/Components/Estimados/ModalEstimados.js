@@ -71,7 +71,7 @@ export default function ModalConsumo(props) {
                   </Grid>
                   <Grid item xl={12} lg={12} md={12} xs={12}>
                     <Textbox
-                      propName="Tiempo"
+                      propName="tiempo"
                       placeholder="Tiempo"
                       value={props.form.tiempo} 
                       handleChange={props.handleChange}                     

@@ -31,7 +31,7 @@ export default class TabEstimados extends React.Component {
     }
     initializeForm = () => {
         return {
-          electrodomestico: 0,
+          idElectrodomestico: 0,
           tiempo: 0,           
         };
     };
@@ -67,7 +67,7 @@ export default class TabEstimados extends React.Component {
             },  */           
         ];
     };
-    handleChange = (prop, value) => {
+    handleChange = (prop, value) => {        
         this.setState((prevState) => ({
           ...prevState,
           form: {
@@ -98,24 +98,66 @@ export default class TabEstimados extends React.Component {
     };
     handleAlta = () => this.handleABM("A");
     handleBaja = (consumo) => this.handleABM("B", consumo);
-
-    handleGuardar = async () => {    
+    onGuardarResponseOk = (response) => {
+      this.setState((prevState) => ({
+        ...prevState,
+        isSaving: false,
+        isModalOpen: false,
+        messageModal: {
+          ...prevState.messageModal,
+          isOpen: true,
+          isSuccess: true,
+          isError: false,
+          title: "Alta de consumo exitoso!",
+          message: "El consumo fue dado de alta correctamente.",
+        },
+        form: this.initializeForm(),        
+      }));
+    };
+    handleCerrarMessageModal = () => {
+      this.cerrarMessageModal();
+    }; 
+    cerrarMessageModal = () => {
+      this.setState((prevState) => ({
+        ...prevState,
+        messageModal: {
+          ...prevState.messageModal,
+          isOpen: false,
+        },
+      }));
+    };
+    onGuardarResponseError = (error) => {
+      this.setState((prevState) => ({
+        ...prevState,
+        isSaving: false,
+        isModalOpen: false,
+        messageModal: {
+          ...prevState.messageModal,
+          isOpen: true,
+          isSuccess: false,
+          isError: true,
+          title: "Alta de facturación fue errónea :(",
+          message: "Oops! Ocurrió un error al dar de alta la facturación",
+        },
+      }));
+    };
+    handleGuardar = async () => {          
         this.setState((prevState) => ({
           ...prevState,
           isSaving: true,
         }));   
         var request = {
-          idUsuario: this.state.form.IdUsuario,
+          idUsuario: this.props.IdUsuario,
           tiempo: this.state.form.tiempo,
-          kwh: this.state.form.kwh,
-          consumoTotal: this.state.form.ConsumoTotal
+          status: "bueno",
+          idElectrodomestico: this.state.form.idElectrodomestico
         };
         console.log(JSON.stringify(request))
         crearEstimado(request)
-        .then((response) => {
+        .then((response) => {          
             this.onGuardarResponseOk(response);            
         })
-        .catch((error) => {
+        .catch((error) => {          
             this.onGuardarResponseError(error);
         });            
     };
@@ -165,7 +207,7 @@ export default class TabEstimados extends React.Component {
           <div>
             {/* <GraficoConsumos GraphData={datosPaginados}/> */}
             <ButtonNuevoContainer maxWidth="lg">
-              <CustomButton handleClick={this.handleAlta} text="Nuevo Consumo" />
+              <CustomButton handleClick={this.handleAlta} text="Calcular consumo estimado" />
             </ButtonNuevoContainer>
                
             <MyTable 
@@ -182,19 +224,17 @@ export default class TabEstimados extends React.Component {
               isOpen={this.state.isModalOpen}
               modalABM={this.state.modalABM}
               isSaving={this.state.isSaving}          
-              form={this.state.form}
-              facturacion={this.props.datos}
-              tiposPago={this.props.tiposPago}
-              validations={this.state.validations}
-              validationMessages={this.state.validationMessages}
+              form={this.state.form}              
               electrodomesticos = {this.props.electro}
               handleGuardar={this.handleGuardar}
               handleEliminar={this.handleEliminar}
               handleCerrar={this.handleCerrar}  
-              handleChange={this.handleChange}       
+              handleChange={this.handleChange}  
+              handleSuccess={this.handleAceptarMessageModal}     
+              isSuccess={this.state.messageModal?.isSuccess}
             />              
     
-            {/*<MessageModal
+            {<MessageModal
               isOpen={this.state.messageModal?.isOpen}
               isLoading={this.state.messageModal?.isLoading}
               title={this.state.messageModal?.title}
@@ -204,7 +244,7 @@ export default class TabEstimados extends React.Component {
               handleSuccess={this.handleAceptarMessageModal}
               handleError={this.handleCerrarMessageModal}
               handleClose={this.handleCerrarMessageModal}
-            /> */}
+            />}
           </div>
         );
       }
