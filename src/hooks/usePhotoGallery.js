@@ -22,7 +22,7 @@ export function usePhotoGallery({PropName,handleChange}) {
     const fileName = new Date().getTime() + ".jpeg";
     const newPhotos = 
     {        
-      webviewPath: cameraPhoto.webPath,
+      webviewPath: cameraPhoto.base64String,
     };
     handleChange(PropName,cameraPhoto.base64String)
     setPhotos(newPhotos);
