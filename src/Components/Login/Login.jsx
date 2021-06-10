@@ -21,10 +21,10 @@ import {
 const CustomTextField = withStyles({
   root: {
     "& .MuiFormLabel-root": {
-      color: "#404040",
+      color: "#fff",
     },
     "& label.Mui-focused": {
-      color: "#404040",
+      color: "#fff",
       fontWeight: "bold",
     },
     "& .MuiInput-underline:before": {
@@ -45,10 +45,10 @@ const CustomTextField = withStyles({
       },
     },
     '& input[type="text"]': {
-      color: "#404040",
+      color: "#fff",
     },
     '& input[type="password"]': {
-      color: "#404040",
+      color: "#fff",
     },
   },
 })(TextField);

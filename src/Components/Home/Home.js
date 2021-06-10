@@ -17,6 +17,8 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import ImageCO2 from "../../Assets/Images/co2-svgrepo-com.svg";
 import ImageTree from "../../Assets/Images/Tree.png";
+import ModalVideo from 'react-modal-video';
+import "react-modal-video/scss/modal-video.scss";
 
 import { listarServiciosPorSemana } from '../../Services/serviciosServices';
 
@@ -114,6 +116,7 @@ export default function Home() {
 
   const classes = useStyles();
   const [tabIndex, setTabIndex] = React.useState(0);
+  const [isOpen, setOpen] = React.useState(true)
   
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
@@ -122,8 +125,13 @@ export default function Home() {
   return (
     <div>
       <Layout title="Inicio">     
-
       <AppBar position="static">
+      <ModalVideo channel='youtube' 
+      youtube={{
+              start: 5,
+              end: 198,
+            }}
+      isOpen={isOpen} videoId="NAPAMIpGB-s" onClose={() => setOpen(false)} />
             <StyledTabs
               value={tabIndex}
               onChange={handleChange}
@@ -132,7 +140,7 @@ export default function Home() {
               centered>
               <Tab 
               className={classes.customTab} 
-              label="Highlights" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
+              label="Tus Logros" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
             </StyledTabs>
         </AppBar>
         
