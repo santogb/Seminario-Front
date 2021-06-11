@@ -19,7 +19,8 @@ import ImageCO2 from "../../Assets/Images/co2-svgrepo-com.svg";
 import ImageTree from "../../Assets/Images/Tree.png";
 import ModalVideo from 'react-modal-video';
 import "react-modal-video/scss/modal-video.scss";
-
+//import GraficoComunidad from "./GraficoComunidad.js";
+import GraficoComunidad from "./GraficoComunidad";
 import { listarServiciosPorSemana } from '../../Services/serviciosServices';
 
 import Iframe from 'react-iframe';
@@ -95,7 +96,7 @@ const StyledTabs = withStyles({
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  
   return (
     <div
       role="tabpanel"
@@ -167,7 +168,12 @@ export default function Home() {
             </p>
             <h1>Felicitaciones, seguí así!</h1>
           </TabPanel>
-        </Card>   
+        </Card>
+        <Card style={styleCard}>
+          <TabPanel value={tabIndex} index={0}>
+            <GraficoComunidad/> 
+          </TabPanel>
+        </Card>  
       </Layout>
     </div>
   );
