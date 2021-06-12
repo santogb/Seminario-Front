@@ -11,7 +11,7 @@ export const crearConsumo = async (data) => {
 };
 export const crearConsumoOCR = async (data) => {
   return await post(endpoints.crearConsumoOCR, {
-    imgUrl: data.imgUrl
+    content: data.content
   });
 };
 

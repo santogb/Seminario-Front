@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function ModalConsumo(props) {
   const classes = useStyles();
-  const { deletePhoto, photos, takePhoto } = usePhotoGallery({PropName:"photo",handleChange:props.handleChange});  
+  const { deletePhoto, photos, takePhoto } = usePhotoGallery({PropName:"photo",handleChange:props.handleOCR});  
   return (
     <div>
       {props.isOpen && (
@@ -87,7 +88,7 @@ export default function ModalConsumo(props) {
                   <Grid item xl={6} lg={6} md={12} xs={12}>
                     <IonFab horizontal="right">
                       <IonFabButton onClick={() => {
-                          takePhoto({PropName:"photo",handleChange:props.handleChange});                           
+                          takePhoto({PropName:"photo"});                           
                         } } >
                         <IonIcon icon={camera}></IonIcon>
                       </IonFabButton>

@@ -77,6 +77,29 @@ export default class TabConsumo extends React.Component {
       },
     }));
   };
+  ocrChange = (prop, value) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      form: {
+        ...prevState.form,
+        [prop]: value,
+      },
+    }));
+    var request = {
+      content: this.state.form.photo
+    };
+    crearConsumoOCR(request)
+      .then((response) => {      
+          this.handleChange("Periodo",response.Periodo)
+          var consumo = Number(response.Consumo.substring(0,response.Consumo.length -4));
+          this.handleChange("ConsumoTotal",""+consumo)
+          var ImporteTotal = Number((response.Importe.substring(1,response.Importe.length-1)).replace('.','').replace(',','.'));
+          this.handleChange("kwh",""+(ImporteTotal/consumo))
+      })
+      .catch((error) => {
+        this.onGuardarResponseError(error);
+      });
+  };
 
   handleABM = (method, consumo) => {
     this.setState((prevState) => ({
@@ -99,42 +122,20 @@ export default class TabConsumo extends React.Component {
         isSaving: true,
       }));
       debugger;
-      if(this.state.form.photo==""){
-        var request = {
-          idUsuario: this.state.form.IdUsuario,
-          periodo: this.state.form.Periodo,
-          kwh: this.state.form.kwh,
-          consumoTotal: this.state.form.ConsumoTotal
-        };
-        console.log(JSON.stringify(request))
-        crearConsumo(request)
-          .then((response) => {
-            this.onGuardarResponseOk(response);            
-          })
-          .catch((error) => {
-            this.onGuardarResponseError(error);
-          });
-      }
-      else{
-        debugger;
-        var request = {
-          content: this.state.form.photo
-        };
-        crearConsumoOCR(request)
-          .then((response) => {
-            console.log(response)
-            crearConsumo(request).then((response) => {
-              this.onGuardarResponseOk(response);            
-            })
-            .catch((error) => {
-              this.onGuardarResponseError(error);
-            });
-          })
-          .catch((error) => {
-            this.onGuardarResponseError(error);
-          });
-      }
-    //}
+      var request = {
+        idUsuario: this.state.form.IdUsuario,
+        periodo: this.state.form.Periodo,
+        kwh: this.state.form.kwh,
+        consumoTotal: this.state.form.ConsumoTotal
+      };
+      console.log(JSON.stringify(request))
+      crearConsumo(request)
+        .then((response) => {
+          this.onGuardarResponseOk(response);            
+        })
+        .catch((error) => {
+          this.onGuardarResponseError(error);
+        });
   };
 
   onGuardarResponseOk = (response) => {
@@ -167,7 +168,7 @@ export default class TabConsumo extends React.Component {
         isSuccess: false,
         isError: true,
         title: "Alta de facturación fue errónea :(",
-        message: "Oops! Ocurrió un error al dar de alta la facturación",
+        message: "Oops! Ocurrió un error al dar de alta la facturación " + error,
       },
     }));
   };
@@ -289,7 +290,8 @@ export default class TabConsumo extends React.Component {
           handleGuardar={this.handleGuardar}
           handleEliminar={this.handleEliminar}
           handleCerrar={this.handleCerrar}  
-          handleChange={this.handleChange}       
+          handleChange={this.handleChange}
+          handleOCR={this.ocrChange}       
         />
           
 
