@@ -3,6 +3,7 @@ import { Container } from "@material-ui/core";
 import { styled } from '@material-ui/core/styles';
 import GraficoConsumos from './GraficoConsumos'
 import Moment from 'moment'
+import Tour from './DiaAdiaTour'
 
 import MyTable from '../Table/Table'
 
@@ -35,11 +36,25 @@ export default class TabConsumo extends React.Component {
       res[date].consumo += value.consumo;
       return res;
     }, {});
+    this.props.datos.map((value) =>{   
+      var date = Moment(value.fechaYHora, 'YYYY-MM-DD HH:mm:ss').format('HH:mm:ss');
+      if(Moment(value.fechaYHora, 'YYYY-MM-DD HH:mm:ss').format('DD-MM-YYYY')==Moment('2021-04-01 00:00:00', 'YYYY-MM-DD HH:mm:ss').format('DD-MM-YYYY')){
+          //res[date] = { fechaYHora: date, consumo: value.consumo };
+          hora.push({ fechaYHora: date, consumo: value.consumo })
+          //return res;
+      }
+    }, {});
+    console.log(hora)
     console.log(dia)
     return(
           <div>
-              <GraficoConsumos GraphData={this.props.datos} originDateFormat="YYY-MM-DD HH:mm:ss" showDateFormat="HH:mm:ss"/> 
-              <GraficoConsumos GraphData={dia} originDateFormat="DD-MM-YYYY" showDateFormat="DD-MM-YYYY"/>               
+              <Tour/>
+              <div class='PorHora'>
+                <GraficoConsumos GraphData={hora} originDateFormat="HH:mm:ss" showDateFormat="HH:mm:ss" label="Por hora"/> 
+              </div>
+              <div class='PorDia'>
+                <GraficoConsumos GraphData={dia} originDateFormat="DD-MM-YYYY" showDateFormat="DD-MM-YYYY" label="Por Dia"/>               
+              </div>
           </div>
     )
   }

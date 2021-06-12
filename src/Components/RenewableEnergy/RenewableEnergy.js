@@ -9,6 +9,7 @@ import Tab from '@material-ui/core/Tab';
 import Layout from '../Layout/Layout.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSolarPanel } from "@fortawesome/free-solid-svg-icons";
+import Tour from './RenewableEnergyTour'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,6 +63,7 @@ function RenewableEnergy() {
               <Tab label="Pronostico Generacion Energia Renovable" icon={<FontAwesomeIcon icon={faSolarPanel} />} aria-label="person" {...tabProps(0)} />
             </StyledTabs>
           </AppBar>
+          <Tour/>
           <Iframe url="https://cdsrenovables.cammesa.com/renovableschart/#/pronostico"
                     width="100%"
                     height="980px"

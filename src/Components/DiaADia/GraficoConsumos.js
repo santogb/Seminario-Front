@@ -25,13 +25,6 @@ export default class GraficoConsumos extends React.Component {
         maintainAspectRatio:false,
     };
     this.props.GraphData?.map((consumo) => xLabels.push(Moment(consumo.fechaYHora, this.props.originDateFormat).format(this.props.showDateFormat)));
-    var speedData = {
-        labels: xLabels,
-        datasets: [{
-          label: "Car Speed (mph)",
-          data: datos,
-        }]
-      };
     
 
     return <div>
@@ -39,7 +32,8 @@ export default class GraficoConsumos extends React.Component {
                 data={{
                     labels:xLabels,
                     datasets:[
-                        {                            
+                        {                
+                            label: this.props.label,            
                             data:datos,
                             backgroundColor: '#000000',
                         }

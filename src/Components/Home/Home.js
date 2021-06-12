@@ -22,6 +22,7 @@ import "react-modal-video/scss/modal-video.scss";
 //import GraficoComunidad from "./GraficoComunidad.js";
 import GraficoComunidad from "./GraficoComunidad";
 import { listarServiciosPorSemana } from '../../Services/serviciosServices';
+import Tour from './HomeTour'
 
 import Iframe from 'react-iframe';
 
@@ -127,27 +128,27 @@ export default function Home() {
     <div>
       <Layout title="Inicio">     
       <AppBar position="static">
-      <ModalVideo channel='youtube' 
-      youtube={{
-              start: 5,
-              end: 198,
-            }}
-      isOpen={isOpen} videoId="NAPAMIpGB-s" onClose={() => setOpen(false)} />
-            <StyledTabs
-              value={tabIndex}
-              onChange={handleChange}
-              variant="fullWidth"
-              className={classes.customTabs}
-              centered>
-              <Tab 
-              className={classes.customTab} 
-              label="Tus Logros" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
-            </StyledTabs>
-        </AppBar>
-        
+        <ModalVideo channel='youtube' 
+          youtube={{
+            start: 5,
+            end: 198,
+          }}
+          isOpen={isOpen} videoId="NAPAMIpGB-s" onClose={() => setOpen(false)} />
+        <StyledTabs
+          value={tabIndex}
+          onChange={handleChange}
+          variant="fullWidth"
+          className={classes.customTabs}
+          centered>
+          <Tab 
+          className={classes.customTab} 
+          label="Tus Logros" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
+        </StyledTabs>
+      </AppBar>
+      <Tour/>
         <Card style={styleCard}>
         <img src={ImageCO2} alt="Logo" className="logo" style={styleImageCO2} />
-          <TabPanel value={tabIndex} index={0}>            
+          <TabPanel value={tabIndex} index={0} class="Home-Consumo-CO">            
             <p style={styleCountUpCO2}> 
               <CountUp end={100} suffix={" kg de CO2"} delay="1"/>
             </p>
@@ -159,7 +160,7 @@ export default function Home() {
             <h1>Consumiste 10kWh menos que el mes pasado, lo que equivale a un 10% menos.</h1>
           </TabPanel> 
           </Card>
-        <Card style={styleCard}>
+        <Card style={styleCard} class="Home-Consumo-Arboles">
         <h1>Gracias a tu reducción de huella de carbono con respecto al mes anterior has salvado la vida de</h1> 
         <img src={ImageTree} alt="Logo" className="logo" style={styleImageTree} />
           <TabPanel value={tabIndex} index={0}>        
@@ -169,7 +170,7 @@ export default function Home() {
             <h1>Felicitaciones, seguí así!</h1>
           </TabPanel>
         </Card>
-        <Card style={styleCard}>
+        <Card style={styleCard} class="Home-Consumo-Graph">
           <TabPanel value={tabIndex} index={0}>
             <GraficoComunidad/> 
           </TabPanel>
