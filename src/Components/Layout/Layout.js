@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
-    "background-color": "#588a63",
+    "background-color": "#5e7b4c",
     fontWeight: "bold"
   },
   toolbarIcon: {
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: "0 8px",
-    "background-color": "#bfe4c7",
+    "background-color": "#91c788",
     ...theme.mixins.toolbar,
   },
   appBar: {
@@ -93,11 +93,11 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    "background-color": "#bfe4c7"
+    "background-color": "#91c788"
   },
   drawerPaperClose: {
     overflowX: "hidden",
-    "background-color": "#bfe4c7",
+    "background-color": "#91c788",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
