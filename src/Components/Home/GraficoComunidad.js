@@ -31,10 +31,14 @@ class GraficoComunidad extends Component {
 			animationEnabled: true,
 			colorSet: "colorSet1",
 			title: {
-				text: "Mejoras de la Comunidad"
+				text: "Mi Comunidad",
+				fontColor: "darkgreen"
 			},
 			axisX: {
-				valueFormatString: "MMMM"
+				valueFormatString: "MMMM",
+				labelAngle: -30,
+				intervalType: "month",
+				interval: 1
 			},
 			axisY: {
 				prefix: "",
@@ -65,7 +69,7 @@ class GraficoComunidad extends Component {
 					{ x: new Date(2021, 7), y: 27500 },
 					{ x: new Date(2021, 8), y: 29500 },
 					{ x: new Date(2021, 9), y: 43000 },
-					{ x: new Date(2021, 10), y: 55000, indexLabel: "Alta demanda" },
+					{ x: new Date(2021, 10), y: 55000 },
 					{ x: new Date(2021, 11), y: 39500 }
 				]
 			},{

@@ -155,7 +155,7 @@ export default function Home() {
             <h1>Consumiste 100 kWh, lo que equivalen a 100kg de CO2</h1>
 
             <p style={styleCountUpImprovePercent}>
-              <CountUp end={10} prefix={"^"} suffix={" %"} delay="3"/>
+              <CountUp end={10} prefix={"⇩"} suffix={" %"} delay="3"/>
             </p>
             <h1>Consumiste 10kWh menos que el mes pasado, lo que equivale a un 10% menos.</h1>
           </TabPanel> 
