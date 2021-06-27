@@ -39,3 +39,10 @@ export function removeIdTipoEmpleado() { return localStorage.removeItem('idTipoE
 export function getActiveSession() { return localStorage.getItem('activeSession'); }
 export function setActiveSession(value) { return localStorage.setItem('activeSession', value); }
 export function removeActiveSession() { return localStorage.removeItem('activeSession'); }
+
+//FirstShow methods
+export function getFirstShow() {
+    return localStorage.getItem('FirstShow'); 
+}
+export function setFirstShow(value) { return localStorage.setItem('FirstShow', value); }
+export function removeFirstShow() { return localStorage.removeItem('FirstShow'); }

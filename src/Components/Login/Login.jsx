@@ -15,7 +15,8 @@ import {
   removeToken,
   removeActiveSession,
   removeIdUser,
-  removeIdTipoEmpleado
+  removeIdTipoEmpleado,
+  setFirstShow
 } from "../../Services/sessionServices";
 
 const CustomTextField = withStyles({
@@ -118,6 +119,7 @@ export default class Login extends Component {
         setActiveSession(true);
         setIdUser("60a1ded49101f6237c9afe29");
         setIdTipoEmpleado("3");
+        setFirstShow(true);
         //HASTA ACÁ
 
         //COMENTADO PARA LOGUEAR AUTOMATICAMENTE:

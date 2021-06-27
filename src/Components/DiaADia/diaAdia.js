@@ -107,7 +107,7 @@ export default function DiaAdia() {
                     variant="fullWidth"
                     className={classes.customTabs}
                     centered>
-                    <Tab className={classes.customTab} label="Mi dia a dia" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
+                    <Tab className={classes.customTab} label="Mi consumo" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
                     </StyledTabs>
                 </AppBar>
                 <TabPanel value={tabIndex} index={0}>            

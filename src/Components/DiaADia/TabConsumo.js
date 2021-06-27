@@ -4,6 +4,7 @@ import { styled } from '@material-ui/core/styles';
 import GraficoConsumos from './GraficoConsumos'
 import Moment from 'moment'
 import Tour from './DiaAdiaTour'
+import Tab from '@material-ui/core/Tab';
 
 import MyTable from '../Table/Table'
 
@@ -50,9 +51,11 @@ export default class TabConsumo extends React.Component {
           <div>
               <Tour/>
               <div class='PorHora'>
+                <Tab label="Hoy" aria-label="person"/>
                 <GraficoConsumos GraphData={hora} originDateFormat="HH:mm:ss" showDateFormat="HH:mm:ss" label="Por hora"/> 
               </div>
               <div class='PorDia'>
+                <Tab label="Por dia" aria-label="person"/>
                 <GraficoConsumos GraphData={dia} originDateFormat="DD-MM-YYYY" showDateFormat="DD-MM-YYYY" label="Por Dia"/>               
               </div>
           </div>

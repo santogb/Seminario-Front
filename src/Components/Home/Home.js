@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
 import Layout from '../Layout/Layout.js';
 import "./Home.scss";
-import WeekCalendar from 'react-week-calendar';
 import 'react-week-calendar/dist/style.css';
-import moment from 'moment'
 import 'moment/locale/es';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -14,17 +12,17 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import PropTypes from 'prop-types';
 import CountUp from 'react-countup';
 import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 import ImageCO2 from "../../Assets/Images/co2-svgrepo-com.svg";
 import ImageTree from "../../Assets/Images/Tree.png";
 import ModalVideo from 'react-modal-video';
 import "react-modal-video/scss/modal-video.scss";
 //import GraficoComunidad from "./GraficoComunidad.js";
 import GraficoComunidad from "./GraficoComunidad";
-import { listarServiciosPorSemana } from '../../Services/serviciosServices';
 import Tour from './HomeTour'
-
-import Iframe from 'react-iframe';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import {getFirstShow,setFirstShow} from "../../Services/sessionServices";
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -51,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const styleCountUpCO2 = {
-  fontSize: 60,
+  fontSize: 40,
   color: "#4b4d45",
   textAlign: "center",
 }
@@ -69,18 +67,20 @@ const styleCountUpTrees = {
 }
 
 const styleCard = {
+  // "max-width": "600px",
   "margin-bottom": "20px",
   "margin-top": "20px",
+  "min-height": "476px",
 }
 
 const styleImageCO2 = {
-  height: "200px",
-  width: "200px",
+  height: "80px",
+  width: "80px",
 }
 
 const styleImageTree = {
-  height: "200px",
-  width: "200px",
+  height: "80px",
+  width: "80px",
 }
 
 const StyledTabs = withStyles({
@@ -118,8 +118,13 @@ export default function Home() {
 
   const classes = useStyles();
   const [tabIndex, setTabIndex] = React.useState(0);
-  const [isOpen, setOpen] = React.useState(true)
-  
+  const [isOpen, setOpen] = React.useState(getFirstShow())
+  const closeVideo = () =>{
+    setFirstShow(false);
+    setOpen(false);
+    console.log(getFirstShow())
+    console.log(getFirstShow())
+  };
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
@@ -127,49 +132,62 @@ export default function Home() {
   return (
     <div>
       <Layout title="Inicio">     
-      <AppBar position="static">
-        <ModalVideo channel='youtube' 
-          youtube={{
-            start: 5,
-            end: 198,
-          }}
-          isOpen={isOpen} videoId="NAPAMIpGB-s" onClose={() => setOpen(false)} />
-        <StyledTabs
-          value={tabIndex}
-          onChange={handleChange}
-          variant="fullWidth"
-          className={classes.customTabs}
-          centered>
-          <Tab 
-          className={classes.customTab} 
-          label="Tus Logros" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
-        </StyledTabs>
-      </AppBar>
-      <Tour/>
-        <Card style={styleCard}>
-        <img src={ImageCO2} alt="Logo" className="logo" style={styleImageCO2} />
-          <TabPanel value={tabIndex} index={0} class="Home-Consumo-CO">            
-            <p style={styleCountUpCO2}> 
-              <CountUp end={100} suffix={" kg de CO2"} delay="1"/>
-            </p>
-            <h1>Consumiste 100 kWh, lo que equivalen a 100kg de CO2</h1>
+        <AppBar position="static"> 
+          {console.log(getFirstShow())} 
+          {console.log(isOpen)}
+               
+            <ModalVideo channel='youtube' 
+              youtube={{
+                start: 5,
+                end: 198,
+              }}
+              isOpen={isOpen} videoId="NAPAMIpGB-s" onClose={() => closeVideo()} />
+             {/* <button type="button" class="btn btn-primary" onClick= {setOpen(true)}>Open</button> */}
+         
+          <StyledTabs
+            value={tabIndex}
+            onChange={handleChange}
+            variant="fullWidth"
+            className={classes.customTabs}
+            centered>
+            <Tab 
+            className={classes.customTab} 
+            label="Tus Logros" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
+          </StyledTabs>
+        </AppBar>
+        <Tour/>
+        <Container>
+          <Row>
+            <Col xs="6">
+              <Card style={styleCard}>
+                <img src={ImageCO2} alt="Logo" className="logo" style={styleImageCO2} />
+                <TabPanel value={tabIndex} index={0} class="Home-Consumo-CO">            
+                  <p style={styleCountUpCO2}> 
+                    <CountUp end={100} suffix={" kg de CO2"} delay="1"/>
+                  </p>
+                  <h2>Consumiste 100 kWh, lo que equivalen a 100kg de CO2</h2>
 
-            <p style={styleCountUpImprovePercent}>
-              <CountUp end={10} prefix={"⇩"} suffix={" %"} delay="3"/>
-            </p>
-            <h1>Consumiste 10kWh menos que el mes pasado, lo que equivale a un 10% menos.</h1>
-          </TabPanel> 
-          </Card>
-        <Card style={styleCard} class="Home-Consumo-Arboles">
-        <h1>Gracias a tu reducción de huella de carbono con respecto al mes anterior has salvado la vida de</h1> 
-        <img src={ImageTree} alt="Logo" className="logo" style={styleImageTree} />
-          <TabPanel value={tabIndex} index={0}>        
-            <p style={styleCountUpTrees}>
-              <CountUp end={10} suffix={" árboles"} delay="5"/>
-            </p>
-            <h1>Felicitaciones, seguí así!</h1>
-          </TabPanel>
-        </Card>
+                  <p style={styleCountUpImprovePercent}>
+                    <CountUp end={10} prefix={"⇩"} suffix={" %"} delay="3"/>
+                  </p>
+                  <h2>Consumiste 10kWh menos que el mes pasado, lo que equivale a un 10% menos.</h2>
+                </TabPanel> 
+              </Card>
+            </Col>
+            <Col xs="6">
+              <Card style={styleCard} >
+                <h2>Gracias a tu reducción de huella de carbono con respecto al mes anterior has salvado la vida de</h2> 
+                <img src={ImageTree} alt="Logo" className="logo" style={styleImageTree} />
+                <TabPanel value={tabIndex} index={0} class="Home-Consumo-Arboles">        
+                  <p style={styleCountUpTrees}>
+                    <CountUp end={10} suffix={" árboles"} delay="5"/>
+                  </p>
+                  <h2>Felicitaciones, seguí así!</h2>
+                </TabPanel>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
         <Card style={styleCard} class="Home-Consumo-Graph">
           <TabPanel value={tabIndex} index={0}>
             <GraficoComunidad/> 

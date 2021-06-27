@@ -9,6 +9,7 @@ import {
   Estimados,
   DiaADia,
 } from './Components';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import './App.css';
