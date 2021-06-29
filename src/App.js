@@ -8,6 +8,7 @@ import {
   Miscelaneo,
   Estimados,
   DiaADia,
+  Infinitips,
 } from './Components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -26,6 +27,8 @@ function App() {
           <AdministrativoRoute exact path="/ConsumoManual" component={ConsumoManual}/>
           <AdministrativoRoute exact path="/Estimados" component={Estimados}/>
           <AdministrativoRoute exact path="/Miscelaneo" component={Miscelaneo}/>
+          <AdministrativoRoute exact path="/Infinitips" component={Infinitips}/>
+
           <Route path="*" component={() => "404 not Found"} />
         </Switch>
       </BrowserRouter>

@@ -29,6 +29,7 @@ class GraficoComunidad extends Component {
 	render() {
 		const options = {
 			animationEnabled: true,
+			culture:  "es",
 			colorSet: "colorSet1",
 			title: {
 				text: "Mi Comunidad",

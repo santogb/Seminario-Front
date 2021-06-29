@@ -5,6 +5,8 @@ import RenewableEnergy from './RenewableEnergy/RenewableEnergy';
 import ConsumoManual from './ConsumoManual/ConsumoManual';
 import MisDatos from './MisDatos/MisDatos';
 import Miscelaneo from './Miscelaneo/Miscelaneo';
+import Infinitips from './Infinitips/tips';
+
 import Estimados from './Estimados/Estimados';
 import DiaADia from './DiaADia/diaAdia';
 
@@ -17,5 +19,6 @@ export {
     ConsumoManual,
     Miscelaneo,
     Estimados,
-    DiaADia
+    DiaADia,
+    Infinitips,
 }

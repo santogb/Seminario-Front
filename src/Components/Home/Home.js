@@ -141,7 +141,9 @@ export default function Home() {
                 start: 5,
                 end: 198,
               }}
-              isOpen={isOpen} videoId="NAPAMIpGB-s" onClose={() => closeVideo()} />
+              isOpen={false} videoId="NAPAMIpGB-s" onClose={() => closeVideo()} />
+
+              
              {/* <button type="button" class="btn btn-primary" onClick= {setOpen(true)}>Open</button> */}
          
           <StyledTabs

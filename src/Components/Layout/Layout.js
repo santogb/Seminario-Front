@@ -186,6 +186,7 @@ const Layout = ({ children, title, refresh }) => {
             {esRolAdministrativo() && <MenuListItem text="Consumo" to="/ConsumoManual" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />}
             {esRolAdministrativo() && <MenuListItem text="Estimados" to="/Estimados" icon={<FontAwesomeIcon icon={faMoneyBillWave}style={{ color: "#404040" }}/>} />}
             {esRolAdministrativo() && <MenuListItem text="Mi Pais" to="/Miscelaneo" icon={<FontAwesomeIcon icon={faPlusSquare}style={{ color: "#404040" }}/>} />}            
+            {esRolAdministrativo() && <MenuListItem text="Infinitips" to="/Infinitips" icon={<FontAwesomeIcon icon={faPlusSquare}style={{ color: "#404040" }}/>} />}            
           </List>
           <Divider />
           <div style={{ position: "absolute", bottom: 0 }}>
