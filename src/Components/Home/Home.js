@@ -112,6 +112,9 @@ function TabPanel(props) {
 
 export default function Home() {
 
+ 
+
+
   useEffect(() => {
     document.title = "Infinite - Inicio"
   }, [])
@@ -129,10 +132,13 @@ export default function Home() {
     setTabIndex(newTabIndex);
   };
 
+
   return (
+
     <div>
       <Layout title="Inicio">     
         <AppBar position="static"> 
+
           {console.log(getFirstShow())} 
           {console.log(isOpen)}
                
@@ -143,9 +149,6 @@ export default function Home() {
               }}
               isOpen={false} videoId="NAPAMIpGB-s" onClose={() => closeVideo()} />
 
-              
-             {/* <button type="button" class="btn btn-primary" onClick= {setOpen(true)}>Open</button> */}
-         
           <StyledTabs
             value={tabIndex}
             onChange={handleChange}

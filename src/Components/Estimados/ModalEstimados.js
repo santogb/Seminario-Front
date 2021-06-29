@@ -11,8 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import { Textbox, Dropdown, CustomButton } from "../Common";
 import 'react-datepicker/dist/react-datepicker.css';
 import "../Common/DatePickerStyle.scss";
-import { IonFab, IonFabButton, IonIcon } from '@ionic/react';
-import { camera } from 'ionicons/icons';
 import { usePhotoGallery} from '../../hooks/usePhotoGallery';
 
 

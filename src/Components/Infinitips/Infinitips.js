@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import Layout from '../Layout/Layout.js';
-import { listarEstimados } from '../../Services/estimadosServices';
-import {listarElectrodomestico} from '../../Services/electrodomesticosServices';
 import {getIdUser} from "../../Services/sessionServices";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -57,7 +55,7 @@ function TabPanel(props) {
     );
 }
 
-export default function Estimados() {
+export default function Infinitips() {
     var idUsuario = getIdUser(); 
     useEffect(() => {
         document.title = "Infinite - Tips"
@@ -85,9 +83,7 @@ export default function Estimados() {
           </AppBar>
           
           <TabPanel value={tabIndex} index={0}>            
-            
             <Tips/>
-           
           </TabPanel>
         </div>
       </Layout>

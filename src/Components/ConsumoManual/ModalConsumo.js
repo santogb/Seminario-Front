@@ -9,11 +9,9 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import { Textbox, Dropdown, CustomButton } from "../Common";
-import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import "../Common/DatePickerStyle.scss";
-import Moment from 'moment'
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonFab, IonFabButton, IonIcon, IonGrid, IonRow, IonCol, IonImg, IonActionSheet } from '@ionic/react';
+import { IonFab, IonFabButton, IonIcon} from '@ionic/react';
 import { camera } from 'ionicons/icons';
 import { usePhotoGallery} from '../../hooks/usePhotoGallery';
 

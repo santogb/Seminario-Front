@@ -50,6 +50,7 @@
     "react-joyride": "^2.3.0",
     "react-modal-video": "^1.2.7",
     "react-router-dom": "^5.2.0",
+    "react-tiny-fab": "^4.0.3",
     "react-to-pdf": "0.0.14",
     "react-trafficlight": "^5.2.1",
     "react-week-calendar": "^0.1.3",

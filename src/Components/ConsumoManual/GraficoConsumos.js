@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Bar } from 'react-chartjs-2';
 import Moment from 'moment'
 
 export default class GraficoConsumos extends React.Component {
     constructor(props) {
-        super(props);
+         super(props);
     }
+
     render() {
     const xLabels = [];
     const datos = [];

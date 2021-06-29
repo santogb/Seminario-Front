@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ProtectedRoute, GerenteRoute, AdministrativoRoute, ProfesorRoute } from './ProtectedRoutes/ProtectedRoute';
+import { ProtectedRoute, AdministrativoRoute } from './ProtectedRoutes/ProtectedRoute';
 import { 
   Login, 
   Home,

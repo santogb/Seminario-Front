@@ -34,7 +34,7 @@ body {
   flex: 1 0 300px;
   box-shadow: 0 1px 1rem -4px #000;
   background: #fff;
-  margin: 1rem;
+  margin: .5rem;
   overflow: hidden;
   border-radius: 6px;
   cursor: pointer;
@@ -43,7 +43,9 @@ body {
   img {
     width: 250px;
     height: 250px;
-    object-fit: center;
+    object-fit: right;
+    margin: auto;
+
   }
   
   &:hover {

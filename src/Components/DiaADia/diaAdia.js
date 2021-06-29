@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import PropTypes from 'prop-types';
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';

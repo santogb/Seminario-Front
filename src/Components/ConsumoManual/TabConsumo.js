@@ -4,7 +4,7 @@ import { styled } from '@material-ui/core/styles';
 import ModalConsumo from './ModalConsumo';
 import GraficoConsumos from './GraficoConsumos'
 
-import { MessageModal, PaginationActions, CustomButton } from '../Common';
+import { MessageModal, CustomButton } from '../Common';
 import { crearConsumo,eliminarConsumo,crearConsumoOCR } from '../../Services/consumoServices';
 import MyTable from '../Table/Table'
 
