@@ -23,6 +23,7 @@ export default class TabConsumo extends React.Component {
     };
   }
  
+
   render(){
     var dia = [];
     var hora = [];
@@ -47,9 +48,12 @@ export default class TabConsumo extends React.Component {
     }, {});
     console.log(hora)
     console.log(dia)
+
+
     return(
           <div>
-              <Tour/>
+            
+              <Tour run={this.props.tour} />
               <div class='PorHora'>
                 <Tab label="Hoy" aria-label="person"/>
                 <GraficoConsumos GraphData={hora} originDateFormat="HH:mm:ss" showDateFormat="HH:mm:ss" label="Por hora"/> 

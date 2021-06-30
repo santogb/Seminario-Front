@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -7,12 +7,12 @@ import Box from '@material-ui/core/Box';
 import PaymentIcon from '@material-ui/icons/Payment';
 import Layout from '../Layout/Layout.js';
 import TabConsumo from "./TabConsumo.js";
-
 import { LoadingData } from '../Common';
-
 import { listarConsumosAutomaticos } from '../../Services/consumoServices';
-
 import {getIdUser} from "../../Services/sessionServices";
+import 'react-tiny-fab/dist/styles.css';
+import { Fab, Action } from 'react-tiny-fab';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -67,6 +67,9 @@ export default function DiaAdia() {
     const [tabIndex, setTabIndex] = React.useState(0);
     const [isLoadingConsumo, setIsLoadingConsumo] = React.useState(false); 
     const [consumo, setConsumo] = React.useState(null);
+    const [tour_on, setTourON] = useState(false);
+
+
   
     const handleChange = (event, newTabIndex) => {
       setTabIndex(newTabIndex);
@@ -100,6 +103,13 @@ export default function DiaAdia() {
             <Layout title="Dia a dia">
                 <div className={classes.root}>
                 <AppBar position="static">
+                
+                    <Fab
+                    icon="?"
+                    onClick={() => setTourON(true)   }
+                    >
+                    </Fab>
+
                     <StyledTabs
                     value={tabIndex}
                     onChange={handleChange}
@@ -113,7 +123,7 @@ export default function DiaAdia() {
                     {!isLoadingConsumo
                         && consumo !== null
                         && (
-                    <TabConsumo datos={consumo} recargarConsumoEvent={recargarConsumo} IdUsuario={getIdUser()}/>
+                    <TabConsumo datos={consumo} recargarConsumoEvent={recargarConsumo} IdUsuario={getIdUser()} tour={tour_on} />
                     )}
                     
                     { (isLoadingConsumo && 

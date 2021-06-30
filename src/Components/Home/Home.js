@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import Layout from '../Layout/Layout.js';
 import "./Home.scss";
 import 'react-week-calendar/dist/style.css';
@@ -17,13 +17,15 @@ import ImageCO2 from "../../Assets/Images/co2-svgrepo-com.svg";
 import ImageTree from "../../Assets/Images/Tree.png";
 import ModalVideo from 'react-modal-video';
 import "react-modal-video/scss/modal-video.scss";
-//import GraficoComunidad from "./GraficoComunidad.js";
 import GraficoComunidad from "./GraficoComunidad";
 import Tour from './HomeTour'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {getFirstShow,setFirstShow,removeFirstShow} from "../../Services/sessionServices";
+
+import { Fab, Action } from 'react-tiny-fab';
+import 'react-tiny-fab/dist/styles.css';
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -113,9 +115,6 @@ function TabPanel(props) {
 
 export default function Home() {
 
- 
-
-
   useEffect(() => {
     document.title = "Infinite - Inicio"
   }, [])
@@ -123,13 +122,16 @@ export default function Home() {
   const classes = useStyles();
   const [tabIndex, setTabIndex] = React.useState(0);
   const [isOpen, setOpen] = React.useState(getFirstShow());
-  // const closeVideo = () =>{
-  //   setFirstShow(false);
-  //   setOpen(false);
-  //   console.log(getFirstShow())
-  //   console.log(getFirstShow())
-  // };
-  //const [isOpen, setOpen] = React.useState(false);
+  const [tour_on, setTourON] = useState(false);
+
+
+  const closeVideo = () =>{
+    setFirstShow(false);
+    setOpen(false);
+    console.log(getFirstShow())
+    console.log(getFirstShow())
+  };
+
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
@@ -143,6 +145,15 @@ export default function Home() {
         <Button color="primary" variant="contained" onClick={()=> setOpen(true)}>VER VIDEO DEMO</Button>
           {console.log('getFirstShow',getFirstShow())} 
           {console.log('isOpen',isOpen)}
+
+        <Fab
+        icon="?"
+        onClick={() => setTourON(true)   }
+        >
+        </Fab>
+
+          {console.log(getFirstShow())} 
+          {console.log(isOpen)}
                
             <ModalVideo channel='youtube' 
               youtube={{
@@ -167,7 +178,7 @@ export default function Home() {
             label="Tus Logros" icon={<PaymentIcon />} aria-label="person" {...tabProps(0)} />
           </StyledTabs>
         </AppBar>
-        <Tour/>
+              <Tour run={tour_on} />
         <Container>
           <Row>
             <Col xs="6">
@@ -178,7 +189,6 @@ export default function Home() {
                     <CountUp end={100} suffix={" kg de CO2"} delay="1"/>
                   </p>
                   <h2>Consumiste 100 kWh, lo que equivalen a 100kg de CO2</h2>
-
                   <p style={styleCountUpImprovePercent}>
                     <CountUp end={10} prefix={"⇩"} suffix={" %"} delay="3"/>
                   </p>

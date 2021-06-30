@@ -4,8 +4,8 @@ import JoyRide from "react-joyride";
 // Tour steps
 const TOUR_STEPS = [
     {
-      target: "#chart-eolico dx-chart",
-      content: "Aca puedem ver cuanto CO2 genero y su relacion al mes anterior."
+      target: ".Pronostico",
+      content: "Aca pueden ver cuanto CO2 genero y su relacion al mes anterior."
     },     
   ];
   

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import Layout from '../Layout/Layout.js';
@@ -11,6 +11,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import { LoadingData } from '../Common';
+import { Fab, Action } from 'react-tiny-fab';
+import 'react-tiny-fab/dist/styles.css';
+import Tour from './EstimadosTour'
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -68,6 +73,7 @@ export default function Estimados() {
 
     const [isLoadingElectrodomesticos, setIsLoadingElectrodomesticos] = React.useState(false); 
     const [electrodomesticos, setElectrodomesticos] = React.useState(null);
+    const [tour_on, setTourON] = useState(false);
 
     const handleChange = (event, newTabIndex) => {
         setTabIndex(newTabIndex);
@@ -112,6 +118,13 @@ export default function Estimados() {
         <Layout title="Estimado">
         <div className={classes.root}>
           <AppBar position="static">
+          <Fab
+        icon="?"
+         onClick={() => setTourON(true)   }
+        >
+        </Fab>
+        <Tour run={tour_on}/>
+
             <StyledTabs
               value={tabIndex}
               onChange={handleChange}
@@ -121,18 +134,19 @@ export default function Estimados() {
               <Tab className={classes.customTab} label="Estimado" aria-label="person" {...tabProps(0)} />
             </StyledTabs>
           </AppBar>
-          
-          <TabPanel value={tabIndex} index={0}>            
+
+          <TabPanel value={tabIndex} index={0} class="Estimados" >            
             {!isLoadingEstimados
                 && estimados !== null
                 && !isLoadingElectrodomesticos && electrodomesticos &&(
               <TabEstimados datos={estimados} electro={electrodomesticos} recargarEstimadosEvent={recargarEstimados} IdUsuario={getIdUser()}/>
             )}
-            
+
             { (isLoadingEstimados && 
               <LoadingData
                 message="Calcular consumo estimados"
                 message2="Aguarde por favor."
+
               />
             )} 
           </TabPanel>

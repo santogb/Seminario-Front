@@ -1,4 +1,4 @@
-import React, { useEffect }  from 'react'
+import React, { useEffect ,useState}  from 'react'
 import Iframe from 'react-iframe'
 
 
@@ -10,6 +10,9 @@ import Layout from '../Layout/Layout.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSolarPanel } from "@fortawesome/free-solid-svg-icons";
 import Tour from './RenewableEnergyTour'
+import { Fab, Action } from 'react-tiny-fab';
+import 'react-tiny-fab/dist/styles.css';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,10 +52,18 @@ function RenewableEnergy() {
         setTabIndex(newTabIndex);
       };
     const classes = useStyles();
+    const [tour_on, setTourON] = useState(false);
+
     return (
         <div>
       <Layout title="Pronostico">
         <div>
+        <Fab
+        icon="?"
+        onClick={() => setTourON(true)   }
+        >
+        </Fab>
+
           <AppBar position="static">
             <StyledTabs
                 value={tabIndex}
@@ -60,7 +71,7 @@ function RenewableEnergy() {
                 variant="fullWidth"
                 className={classes.customTabs}
                 centered>
-              <Tab label="Pronostico Generacion Energia Renovable" icon={<FontAwesomeIcon icon={faSolarPanel} />} aria-label="person" {...tabProps(0)} />
+              <Tab   label="Pronostico Generacion Energia Renovable" icon={<FontAwesomeIcon icon={faSolarPanel} />} aria-label="person" {...tabProps(0)} />
             </StyledTabs>
           </AppBar>
           <Tour/>
@@ -70,7 +81,9 @@ function RenewableEnergy() {
                     id="RenewableEnergy"
                     className="RenewableEnergy"
                     display="initial"
-                    position="relative"/>
+                    position="relative"
+                    class="Pronostico"
+                    />
         </div>
       </Layout>
     </div>

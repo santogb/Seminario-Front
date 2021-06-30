@@ -14,10 +14,10 @@ const TOUR_STEPS = [
   ];
   
   // Tour component
-  const Tour = () => {
+  const Tour = (props) => {
     return (
       <>
-        <JoyRide steps={TOUR_STEPS} continuous={true} />
+        <JoyRide steps={TOUR_STEPS} continuous={true} run={props.run}/>
       </>
     );
   };
