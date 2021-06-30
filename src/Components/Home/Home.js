@@ -7,6 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import PaymentIcon from '@material-ui/icons/Payment';
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import PropTypes from 'prop-types';
@@ -22,7 +23,7 @@ import Tour from './HomeTour'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {getFirstShow,setFirstShow} from "../../Services/sessionServices";
+import {getFirstShow,setFirstShow,removeFirstShow} from "../../Services/sessionServices";
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -121,13 +122,14 @@ export default function Home() {
 
   const classes = useStyles();
   const [tabIndex, setTabIndex] = React.useState(0);
-  const [isOpen, setOpen] = React.useState(getFirstShow())
-  const closeVideo = () =>{
-    setFirstShow(false);
-    setOpen(false);
-    console.log(getFirstShow())
-    console.log(getFirstShow())
-  };
+  const [isOpen, setOpen] = React.useState(getFirstShow());
+  // const closeVideo = () =>{
+  //   setFirstShow(false);
+  //   setOpen(false);
+  //   console.log(getFirstShow())
+  //   console.log(getFirstShow())
+  // };
+  //const [isOpen, setOpen] = React.useState(false);
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
@@ -138,16 +140,21 @@ export default function Home() {
     <div>
       <Layout title="Inicio">     
         <AppBar position="static"> 
-
-          {console.log(getFirstShow())} 
-          {console.log(isOpen)}
+        <Button color="primary" variant="contained" onClick={()=> setOpen(true)}>VER VIDEO DEMO</Button>
+          {console.log('getFirstShow',getFirstShow())} 
+          {console.log('isOpen',isOpen)}
                
             <ModalVideo channel='youtube' 
               youtube={{
                 start: 5,
                 end: 198,
               }}
-              isOpen={false} videoId="NAPAMIpGB-s" onClose={() => closeVideo()} />
+              isOpen={isOpen} videoId="NAPAMIpGB-s" onClose={() => {
+                removeFirstShow();
+                setOpen(false);
+                console.log('getFirstShow/isOpen afterclose',isOpen,getFirstShow());
+                }
+              } />
 
           <StyledTabs
             value={tabIndex}

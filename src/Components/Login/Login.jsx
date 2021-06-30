@@ -66,7 +66,7 @@ export default class Login extends Component {
       isLoading: false,
       hasError: false,
       error: "",
-
+      
     };
   }
 
