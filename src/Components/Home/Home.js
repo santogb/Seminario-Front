@@ -26,6 +26,8 @@ import {getFirstShow,setFirstShow,removeFirstShow} from "../../Services/sessionS
 
 import { Fab, Action } from 'react-tiny-fab';
 import 'react-tiny-fab/dist/styles.css';
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 TabPanel.propTypes = {
   children: PropTypes.node,
@@ -142,14 +144,23 @@ export default function Home() {
     <div>
       <Layout title="Inicio">     
         <AppBar position="static"> 
-        <Button color="primary" variant="contained" onClick={()=> setOpen(true)}>VER VIDEO DEMO</Button>
           {console.log('getFirstShow',getFirstShow())} 
           {console.log('isOpen',isOpen)}
 
         <Fab
         icon="?"
-        onClick={() => setTourON(true)   }
+        alwaysShowTitle={true}
+
         >
+           <Action
+          text="Ayuda"
+          onClick={() => setTourON(true)   }
+          children={<HelpOutlineIcon />}          />
+          <Action
+          text="Ver Video"
+          onClick={()=> setOpen(true)}
+          children={<VideoLibraryIcon />}        />
+       
         </Fab>
 
           {console.log(getFirstShow())} 
