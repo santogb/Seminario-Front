@@ -3,6 +3,13 @@ import CanvasJSReact from '../../Assets/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var CanvasJS = CanvasJSReact.CanvasJS;
  
+
+CanvasJS.addCultureInfo("es",
+                {
+                    decimalSeparator: ".",
+                    digitGroupSeparator: ",",
+                    months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+               });
 class GraficoComunidad extends Component {
 		constructor() {
 		super();

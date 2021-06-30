@@ -6,8 +6,9 @@ import JoyRide from "react-joyride";
 const TOUR_STEPS = [
     {
       target: ".Estimados",
-      content: "Aca puedem ver cuanto CO2 genero y su relacion al mes anterior."
-    },  
+      content: "Tabla de consumos estimas por dispositivo.",
+      title: "Consumo Estimado",
+    },
     
   ];
   

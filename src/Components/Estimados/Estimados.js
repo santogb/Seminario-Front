@@ -139,7 +139,7 @@ export default function Estimados() {
             {!isLoadingEstimados
                 && estimados !== null
                 && !isLoadingElectrodomesticos && electrodomesticos &&(
-              <TabEstimados datos={estimados} electro={electrodomesticos} recargarEstimadosEvent={recargarEstimados} IdUsuario={getIdUser()}/>
+              <TabEstimados datos={estimados} electro={electrodomesticos} recargarEstimadosEvent={recargarEstimados} IdUsuario={getIdUser()} />
             )}
 
             { (isLoadingEstimados && 

@@ -5,11 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-chrome",
+            "type": "node-terminal",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "Launch via NPM",
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "command": "npm run start"
+
         }
     ]
 }
