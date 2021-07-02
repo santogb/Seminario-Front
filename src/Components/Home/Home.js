@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+import Badge from '@material-ui/core/Badge';
 import PaymentIcon from '@material-ui/icons/Payment';
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import PropTypes from 'prop-types';
@@ -18,6 +18,8 @@ import ImageTree from "../../Assets/Images/Tree.png";
 import ModalVideo from 'react-modal-video';
 import "react-modal-video/scss/modal-video.scss";
 import GraficoComunidad from "./GraficoComunidad";
+import { useHistory } from "react-router-dom";
+import EcoIcon from '@material-ui/icons/Eco';
 import Tour from './HomeTour'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -126,7 +128,6 @@ export default function Home() {
   const [isOpen, setOpen] = React.useState(getFirstShow());
   const [tour_on, setTourON] = useState(false);
 
-
   const closeVideo = () =>{
     setFirstShow(false);
     setOpen(false);
@@ -137,21 +138,25 @@ export default function Home() {
   const handleChange = (event, newTabIndex) => {
     setTabIndex(newTabIndex);
   };
+  const history = useHistory()
 
+  const handleClick = (e) => {
+    history.push("/Infinitips") 
+  };
 
   return (
-
-    <div>
-      <Layout title="Inicio">     
+          <div>
+        <Layout title="Inicio">
+        <Badge badgeContent={1} style={{padding: 5}} color="primary" onClick={ handleClick}>
+                <EcoIcon fontSize="large" />
+              </Badge>
+              
         <AppBar position="static"> 
           {console.log('getFirstShow',getFirstShow())} 
           {console.log('isOpen',isOpen)}
-
         <Fab
         icon="?"
-        alwaysShowTitle={true}
-
-        >
+        alwaysShowTitle={true}>
            <Action
           text="Ayuda"
           onClick={() => setTourON(true)   }
@@ -160,7 +165,6 @@ export default function Home() {
           text="Ver Video"
           onClick={()=> setOpen(true)}
           children={<VideoLibraryIcon />}        />
-       
         </Fab>
 
           {console.log(getFirstShow())} 
@@ -204,6 +208,7 @@ export default function Home() {
                     <CountUp end={10} prefix={"⇩"} suffix={" %"} delay="3"/>
                   </p>
                   <h2>Consumiste 10kWh menos que el mes pasado, lo que equivale a un 10% menos.</h2>
+                
                 </TabPanel> 
               </Card>
             </Col>

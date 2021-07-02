@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
-
 import Layout from '../Layout/Layout.js';
 import {getIdUser} from "../../Services/sessionServices";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
-import { LoadingData } from '../Common';
 import Tips from "./tips";
-
+import { Fab, Action } from 'react-tiny-fab';
+import 'react-tiny-fab/dist/styles.css';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,6 +69,11 @@ export default function Infinitips() {
     return(      
     <div>
         <Layout title="Infinitips">
+        <Fab
+        icon="?"
+        alwaysShowTitle={true}>
+        </Fab>
+
         <div className={classes.root}>
           <AppBar position="static">
             <StyledTabs
