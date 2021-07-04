@@ -39,7 +39,6 @@ class GraficoComunidad extends Component {
 			culture:  "es",
 			colorSet: "colorSet1",
 			title: {
-				text: "Mi Comunidad",
 				fontColor: "darkgreen"
 			},
 			axisX: {

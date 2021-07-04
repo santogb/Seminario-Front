@@ -54,7 +54,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#404040',
   }
 }));
-
+const styleCardContainer = {
+  "margin-top":"40px"
+}
 const styleCountUpCO2 = {
   fontSize: 40,
   color: "#4b4d45",
@@ -77,12 +79,16 @@ const styleCard = {
   // "max-width": "600px",
   "margin-bottom": "20px",
   "margin-top": "20px",
-  "min-height": "476px",
+  "min-height": "400px",
 }
 
 const styleImageCO2 = {
   height: "80px",
   width: "80px",
+}
+
+const styleContainer = {
+  "max-height": "1000px",
 }
 
 const styleImageTree = {
@@ -146,7 +152,7 @@ export default function Home() {
 
   return (
           <div>
-        <Layout title="Inicio">
+        <Layout title="Inicio"  style={styleContainer}>
         <Badge badgeContent={1} style={{padding: 5}} color="primary" onClick={ handleClick}>
                 <EcoIcon fontSize="large" />
               </Badge>
@@ -198,30 +204,34 @@ export default function Home() {
           <Row>
             <Col xs="6">
               <Card style={styleCard}>
-                <img src={ImageCO2} alt="Logo" className="logo" style={styleImageCO2} />
-                <TabPanel value={tabIndex} index={0} class="Home-Consumo-CO">            
-                  <p style={styleCountUpCO2}> 
-                    <CountUp end={154.98} suffix={" kg de CO2"} delay="1"/>
-                  </p>
-                  <h2>Consumiste 378 kWh, lo que equivalen a 154.98kg de CO2</h2>
-                  <p style={styleCountUpImprovePercent}>
-                    <CountUp end={10} prefix={"⇩"} suffix={" %"} delay="3"/>
-                  </p>
-                  <h2>Consumiste 42kWh menos que el mes pasado, lo que equivale a un 10% menos.</h2>
-                
-                </TabPanel> 
+                <div style={styleCardContainer}>
+                  <TabPanel value={tabIndex} index={0} class="Home-Consumo-CO"> 
+                    <h4>Consumiste 378 kWh, lo que equivalen a </h4> 
+                    <p style={styleCountUpCO2}> 
+                      <CountUp end={154.98} suffix={" kg de " } delay="1"/>
+                      <img src={ImageCO2} alt="Logo" className="logo" style={styleImageCO2} />
+                    </p>
+                    <p style={styleCountUpImprovePercent}>
+                      <CountUp end={10} prefix={"⇩"} suffix={" %" } delay="3"/>
+                    </p>
+                    <h4>Consumiste 42kWh menos que el mes pasado, lo que equivale a un 10% menos.</h4>
+                  
+                  </TabPanel> 
+                </div>
               </Card>
             </Col>
             <Col xs="6">
               <Card style={styleCard} >
-                <h2>Gracias a tu reducción de huella de carbono con respecto al mes anterior has salvado la vida de</h2> 
-                <img src={ImageTree} alt="Logo" className="logo" style={styleImageTree} />
-                <TabPanel value={tabIndex} index={0} class="Home-Consumo-Arboles">        
-                  <p style={styleCountUpTrees}>
-                    <CountUp end={0.798} suffix={" árboles"} delay="5" decimals={2} decimal=","/>
-                  </p>
-                  <h2>Felicitaciones, seguí así!</h2>
-                </TabPanel>
+                <div style={styleCardContainer}>
+                  <h4>Gracias a tu reducción de huella de carbono con respecto al mes anterior has salvado la vida de</h4> 
+                  <img src={ImageTree} alt="Logo" className="logo" style={styleImageTree} />
+                  <TabPanel value={tabIndex} index={0} class="Home-Consumo-Arboles">        
+                    <p style={styleCountUpImprovePercent}>
+                      <CountUp end={0.798} suffix={" árboles"} delay="5" decimals={2} decimal=","/>
+                    </p>
+                    <h4>Felicitaciones, seguí así!</h4>
+                  </TabPanel>
+                </div>
               </Card>
             </Col>
           </Row>
