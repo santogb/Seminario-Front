@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "flex-end",
     padding: "0 8px",
-    "background-color": "#5e7b4c",
+    "background-color": "#d7f0cb",
     ...theme.mixins.toolbar,
   },
   appBar: {
