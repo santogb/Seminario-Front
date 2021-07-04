@@ -22,7 +22,7 @@ class GraficoComunidad extends Component {
 		if (order > suffixes.length - 1)
 			order = suffixes.length - 1;
 		var suffix = suffixes[order];
-		return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix + 'Wh por vivienda';
+		return CanvasJS.formatNumber(e.value / Math.pow(1000, order)) + suffix + '';
 	}
 	toggleDataSeries(e){
 		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
@@ -67,37 +67,37 @@ class GraficoComunidad extends Component {
 				xValueFormatString: "MMMM YYYY",
 				yValueFormatString: "#,##0",
 				dataPoints: [
-					{ x: new Date(2021, 0), y: 27500 },
-					{ x: new Date(2021, 1), y: 29000 },
-					{ x: new Date(2021, 2), y: 22000 },
-					{ x: new Date(2021, 3), y: 26500 },
-					{ x: new Date(2021, 4), y: 33000 },
-					{ x: new Date(2021, 5), y: 37000 },
-					{ x: new Date(2021, 6), y: 32000 },
-					{ x: new Date(2021, 7), y: 27500 },
-					{ x: new Date(2021, 8), y: 29500 },
-					{ x: new Date(2021, 9), y: 43000 },
-					{ x: new Date(2021, 10), y: 55000 },
-					{ x: new Date(2021, 11), y: 39500 }
+					{ x: new Date(2021, 0), y: 230 },
+					{ x: new Date(2021, 1), y: 300 },
+					{ x: new Date(2021, 2), y: 270 },
+					{ x: new Date(2021, 3), y: 320 },
+					{ x: new Date(2021, 4), y: 400 },
+					{ x: new Date(2021, 5), y: 380 },
+					{ x: new Date(2021, 6), y: 330 },
+					{ x: new Date(2021, 7), y: 270 },
+					{ x: new Date(2021, 8), y: 290 },
+					{ x: new Date(2021, 9), y: 295 },
+					{ x: new Date(2021, 10), y: 300 },
+					{ x: new Date(2021, 11), y: 303 }
 				]
 			},{
 				type: "line",
-				name: "Nuevos Usuarios",
+				name: "Cantidad de Usuarios",
 				showInLegend: true,
 				yValueFormatString: "#,##0",
 				dataPoints: [
-					{ x: new Date(2021, 0), y: 38000 },
-					{ x: new Date(2021, 1), y: 39000 },
-					{ x: new Date(2021, 2), y: 35000 },
-					{ x: new Date(2021, 3), y: 37000 },
-					{ x: new Date(2021, 4), y: 42000 },
-					{ x: new Date(2021, 5), y: 48000 },
-					{ x: new Date(2021, 6), y: 41000 },
-					{ x: new Date(2021, 7), y: 38000 },
-					{ x: new Date(2021, 8), y: 42000 },
-					{ x: new Date(2021, 9), y: 45000 },
-					{ x: new Date(2021, 10), y: 48000 },
-					{ x: new Date(2021, 11), y: 47000 }
+					{ x: new Date(2021, 0), y: 38 },
+					{ x: new Date(2021, 1), y: 77 },
+					{ x: new Date(2021, 2), y: 95 },
+					{ x: new Date(2021, 3), y: 107 },
+					{ x: new Date(2021, 4), y: 112 },
+					{ x: new Date(2021, 5), y: 116 },
+					{ x: new Date(2021, 6), y: 131},
+					{ x: new Date(2021, 7), y: 208 },
+					{ x: new Date(2021, 8), y: 222 },
+					{ x: new Date(2021, 9), y: 285},
+					{ x: new Date(2021, 10), y: 338 },
+					{ x: new Date(2021, 11), y: 367 }
 				]
 			},{
 				type: "area",
@@ -107,18 +107,18 @@ class GraficoComunidad extends Component {
 				showInLegend: true,
 				yValueFormatString: "#,##0",
 				dataPoints: [
-					{ x: new Date(2021, 0), y: 11500 },
-					{ x: new Date(2021, 1), y: 10500 },
-					{ x: new Date(2021, 2), y: 9000 },
-					{ x: new Date(2021, 3), y: 13500 },
-					{ x: new Date(2021, 4), y: 13890 },
-					{ x: new Date(2021, 5), y: 18500 },
-					{ x: new Date(2021, 6), y: 16000 },
-					{ x: new Date(2021, 7), y: 14500 },
-					{ x: new Date(2021, 8), y: 15880 },
-					{ x: new Date(2021, 9), y: 24000 },
-					{ x: new Date(2021, 10), y: 31000 },
-					{ x: new Date(2021, 11), y: 19000 }
+					{ x: new Date(2021, 0), y: 48 },
+					{ x: new Date(2021, 1), y: 63 },
+					{ x: new Date(2021, 2), y: 70 },
+					{ x: new Date(2021, 3), y: 73 },
+					{ x: new Date(2021, 4), y: 80 },
+					{ x: new Date(2021, 5), y: 80 },
+					{ x: new Date(2021, 6), y: 70 },
+					{ x: new Date(2021, 7), y: 85 },
+					{ x: new Date(2021, 8), y: 130 },
+					{ x: new Date(2021, 9), y: 160 },
+					{ x: new Date(2021, 10), y: 165 },
+					{ x: new Date(2021, 11), y: 170 }
 				]
 			}]
 		}

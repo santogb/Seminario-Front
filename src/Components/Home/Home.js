@@ -201,13 +201,13 @@ export default function Home() {
                 <img src={ImageCO2} alt="Logo" className="logo" style={styleImageCO2} />
                 <TabPanel value={tabIndex} index={0} class="Home-Consumo-CO">            
                   <p style={styleCountUpCO2}> 
-                    <CountUp end={100} suffix={" kg de CO2"} delay="1"/>
+                    <CountUp end={154.98} suffix={" kg de CO2"} delay="1"/>
                   </p>
-                  <h2>Consumiste 100 kWh, lo que equivalen a 100kg de CO2</h2>
+                  <h2>Consumiste 378 kWh, lo que equivalen a 154.98kg de CO2</h2>
                   <p style={styleCountUpImprovePercent}>
                     <CountUp end={10} prefix={"⇩"} suffix={" %"} delay="3"/>
                   </p>
-                  <h2>Consumiste 10kWh menos que el mes pasado, lo que equivale a un 10% menos.</h2>
+                  <h2>Consumiste 42kWh menos que el mes pasado, lo que equivale a un 10% menos.</h2>
                 
                 </TabPanel> 
               </Card>
@@ -218,7 +218,7 @@ export default function Home() {
                 <img src={ImageTree} alt="Logo" className="logo" style={styleImageTree} />
                 <TabPanel value={tabIndex} index={0} class="Home-Consumo-Arboles">        
                   <p style={styleCountUpTrees}>
-                    <CountUp end={10} suffix={" árboles"} delay="5"/>
+                    <CountUp end={0.798} suffix={" árboles"} delay="5" decimals={2} decimal=","/>
                   </p>
                   <h2>Felicitaciones, seguí así!</h2>
                 </TabPanel>
